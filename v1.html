@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MBG v1 — CleverTap + Banner Journey · Wiom CSP App</title>
+<style>
+  :root{
+    --magenta:#D9008D; --ink:#161021; --ink-2:#5C5570; --ink-3:#9A9A93;
+    --page:#FAFAF7; --card:#FFFFFF; --line:#EAE7DF; --line-2:#D8D4CA;
+    --green:#0F7A52; --green-soft:#E4F4EC;
+    --red:#C0392B; --red-soft:#FBEBE9;
+    --amber:#9A6A0A; --amber-soft:#F8EFDC;
+    --blue:#1763B6; --blue-soft:#E8F1FB;
+    --radius:14px;
+    /* Wiom tokens */
+    --w-brand:#D9008D; --w-brand-2:#B0006F; --w-brand-tint:#FFE5F6; --w-brand-stroke:#FFB2E4;
+    --w-secondary:#443152;
+    --w-screen:#FAF9FC; --w-bg:#E8E4F0; --w-surface:#FFFFFF;
+    --w-text:#161021; --w-text-2:#665E75; --w-text-3:#A7A1B2;
+    --w-stroke:#E8E4F0; --w-stroke-2:#D7D3E0;
+    --w-pos:#008043; --w-pos-bg:#E1FAED;
+    --w-neg:#D92130; --w-neg-bg:#FFE5E7;
+    --w-warn:#B85C00; --w-warn-bg:#FFE6CC;
+    --w-caution:#806000; --w-caution-bg:#FFF2BF;
+    --w-info:#6D17CE; --w-info-bg:#F1E5FF;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--page); color:var(--ink); font-family:"Segoe UI",system-ui,-apple-system,"Noto Sans",Roboto,sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1180px; margin:0 auto; padding:32px 22px 80px;}
+  .hi{font-family:"Noto Sans Devanagari","Segoe UI",sans-serif;}
+  .eyebrow{font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); margin:0 0 8px;}
+  h1{font-size:30px; line-height:1.18; font-weight:700; margin:0 0 12px; letter-spacing:-.01em;}
+  h2{font-size:21px; font-weight:700; margin:0 0 6px;}
+  h3{font-size:15px; font-weight:700; margin:0 0 4px;}
+  .sub{color:var(--ink-2); font-size:15px;}
+  .tag{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:#fff; background:var(--magenta); padding:4px 11px; border-radius:6px; margin-bottom:16px;}
+  .hero{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:26px 28px; margin-bottom:24px;}
+  .hero p{margin:10px 0 0; font-size:15px; color:var(--ink-2); max-width:82ch;}
+
+  .limits{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:20px 0 4px;}
+  @media(max-width:760px){.limits{grid-template-columns:1fr;}}
+  .limit{border:1px solid var(--line); border-radius:12px; padding:15px 17px; background:var(--page);}
+  .limit .lh{font-size:13px; font-weight:700; color:var(--magenta); margin-bottom:4px; display:flex; align-items:center; gap:7px;}
+  .limit p{font-size:13px; color:var(--ink-2); margin:0;}
+  .nope{border:1px dashed var(--line-2); border-radius:12px; padding:13px 16px; margin-top:14px; font-size:13px; color:var(--ink-2); background:#fff;}
+  .nope b{color:var(--ink);}
+
+  .principles{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px;}
+  .pchip{font-size:12.5px; background:var(--page); border:1px solid var(--line-2); border-radius:999px; padding:6px 13px; color:var(--ink-2);}
+  .pchip b{color:var(--ink);}
+
+  .rail{display:flex; flex-wrap:wrap; gap:8px; margin:28px 0 8px;}
+  .rstep{flex:1 1 150px; background:var(--card); border:1px solid var(--line); border-top:3px solid var(--magenta); border-radius:10px; padding:11px 13px; min-width:140px; text-decoration:none; color:inherit;}
+  .rstep .n{font-size:11px; font-weight:700; color:var(--magenta); letter-spacing:.04em;}
+  .rstep .t{font-size:13.5px; font-weight:600; margin-top:2px; line-height:1.3;}
+  .rstep .c{font-size:11.5px; color:var(--ink-3); margin-top:3px;}
+  .rstep .s{display:inline-block; font-size:10px; font-weight:700; margin-top:5px; padding:1px 7px; border-radius:5px;}
+  .s-ct{background:var(--w-brand-tint); color:var(--w-brand);}
+  .s-bn{background:var(--blue-soft); color:var(--blue);}
+
+  .section{margin:46px 0 0; scroll-margin-top:20px;}
+  .section-head{margin-bottom:18px; border-bottom:1px solid var(--line); padding-bottom:12px;}
+  .section-head .kicker{font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--magenta); margin-bottom:4px;}
+
+  .stage{display:grid; grid-template-columns:1fr 360px; gap:34px; align-items:start; margin-bottom:10px;}
+  @media(max-width:880px){.stage{grid-template-columns:1fr;}}
+  .meta{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 16px;}
+  .mtag{font-size:11.5px; padding:4px 10px; border-radius:6px; font-weight:600; border:1px solid var(--line-2);}
+  .mtag.trigger{background:#fff; color:var(--ink-2);}
+  .mtag.ct{background:var(--w-brand-tint); color:var(--w-brand); border-color:transparent;}
+  .mtag.bn{background:var(--blue-soft); color:var(--blue); border-color:transparent;}
+  .explain ul{margin:10px 0 0; padding-left:18px;}
+  .explain li{font-size:14px; color:var(--ink-2); margin-bottom:7px;}
+  .explain li b{color:var(--ink);}
+  .why{margin-top:14px; font-size:13px; padding:11px 13px; background:#fff; border:1px dashed var(--line-2); border-radius:9px; color:var(--ink-2);}
+  .why b{color:var(--magenta);}
+  .copybox{margin-top:14px; border:1px solid var(--line); border-radius:10px; overflow:hidden;}
+  .copybox .ch{font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-3); background:var(--page); padding:7px 12px; border-bottom:1px solid var(--line);}
+  .copyrow{display:grid; grid-template-columns:92px 1fr; border-bottom:1px solid var(--line);}
+  .copyrow:last-child{border-bottom:none;}
+  .copyrow .k{background:#fff; color:var(--ink-3); padding:8px 12px; font-size:11.5px; border-right:1px solid var(--line); font-weight:600;}
+  .copyrow .v{padding:8px 12px; font-size:13.5px;}
+  .copyrow .v .en{color:var(--ink-3); font-size:12px; display:block; margin-top:2px;}
+
+  /* phone */
+  .phone-wrap{position:sticky; top:18px;}
+  .phone{width:340px; border-radius:30px; background:#000; padding:9px; box-shadow:0 12px 34px rgba(22,16,33,.22); margin:0 auto;}
+  .screen{background:var(--w-screen); border-radius:23px; overflow:hidden; height:660px; display:flex; flex-direction:column; position:relative;}
+  .caption{text-align:center; font-size:12px; color:var(--ink-3); margin-top:10px;}
+  .w-header{background:var(--w-secondary); color:#fff; padding:14px 16px; display:flex; align-items:center; gap:12px; flex:none;}
+  .w-header .menu{font-size:18px; opacity:.9;} .w-header .title{font-size:16px; font-weight:600; flex:1;} .w-header .ic{font-size:16px; opacity:.85;}
+  .w-body{flex:1; overflow:hidden; position:relative;}
+  .w-scroll{padding:14px; height:100%; overflow:hidden;}
+
+  /* banner */
+  .w-banner{display:flex; border-radius:12px; overflow:hidden; margin-bottom:12px;}
+  .w-banner .accent{width:4px; flex:none;}
+  .w-banner .bbody{padding:11px 12px; display:flex; gap:9px; align-items:center; flex:1;}
+  .w-banner .bi{font-size:16px; flex:none;}
+  .w-banner .bt{font-size:12.5px; font-weight:600; line-height:1.4;}
+  .w-banner .bs{font-size:11.5px; line-height:1.4; margin-top:2px; opacity:.92;}
+  .w-banner .arr{opacity:.5; font-size:16px; padding-left:4px;}
+  .w-banner.info{background:var(--w-info-bg);} .w-banner.info .accent{background:var(--w-info);} .w-banner.info .bi,.w-banner.info .bt{color:var(--w-info);} .w-banner.info .bs{color:#4a2a86;}
+  .w-banner.ok{background:var(--w-pos-bg);} .w-banner.ok .accent{background:var(--w-pos);} .w-banner.ok .bi,.w-banner.ok .bt{color:var(--w-pos);} .w-banner.ok .bs{color:#0a5e32;}
+  .w-banner.brand{background:var(--w-brand-tint);} .w-banner.brand .accent{background:var(--w-brand);} .w-banner.brand .bi,.w-banner.brand .bt{color:var(--w-brand);} .w-banner.brand .bs{color:#8a0059;}
+  .w-banner.warn{background:var(--w-caution-bg);} .w-banner.warn .accent{background:var(--w-caution);} .w-banner.warn .bi,.w-banner.warn .bt{color:var(--w-caution);} .w-banner.warn .bs{color:#5e4a00;}
+
+  /* ghost home content (cannot change strip — show as-is, dimmed) */
+  .ghost{opacity:.45;}
+  .chip-grid{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px;}
+  .a-chip{background:#fff; border:1px solid var(--w-stroke); border-radius:8px; padding:11px; min-height:64px;}
+  .a-chip .lbl{font-size:10.5px; font-weight:600; color:var(--w-text-2);} .a-chip .val{font-size:18px; font-weight:700; color:var(--w-text); margin-top:2px;}
+  .task-card{background:#fff; border:1px solid var(--w-stroke); border-left:4px solid var(--w-text-3); border-radius:12px; padding:11px 12px; margin-bottom:9px;}
+  .task-card .tl1{font-size:12px; font-weight:600;} .task-card .tl2{font-size:11px; color:var(--w-text-2); margin-top:2px;}
+  .lockmini{font-size:10px; color:var(--w-text-3); text-transform:uppercase; letter-spacing:.04em; margin:2px 0 8px;}
+
+  /* CleverTap full-page interstitial */
+  .ct{position:absolute; inset:0; background:#fff; display:flex; flex-direction:column;}
+  .ct .ct-hero{background:linear-gradient(155deg,var(--w-brand),var(--w-brand-2)); color:#fff; padding:30px 22px 26px; position:relative; text-align:center;}
+  .ct .ct-x{position:absolute; top:12px; right:14px; color:#fff; opacity:.85; font-size:18px;}
+  .ct .ct-emoji{font-size:48px; line-height:1;}
+  .ct .ct-kick{font-size:11px; letter-spacing:.08em; text-transform:uppercase; opacity:.9; margin-top:12px;}
+  .ct .ct-title{font-size:22px; font-weight:700; line-height:1.25; margin-top:6px;}
+  .ct .ct-content{padding:20px 22px; flex:1; display:flex; flex-direction:column;}
+  .ct .ct-body{font-size:14px; color:var(--w-text-2); line-height:1.6;}
+  .ct .ct-highlight{background:var(--w-brand-tint); border-radius:14px; padding:14px 15px; margin:16px 0; text-align:center;}
+  .ct .ct-highlight .h-amt{font-size:26px; font-weight:700; color:var(--w-brand);}
+  .ct .ct-highlight .h-cap{font-size:12px; color:#8a0059; margin-top:2px;}
+  .ct .ct-list{margin:6px 0 0; padding:0; list-style:none;}
+  .ct .ct-list li{display:flex; gap:9px; font-size:13px; color:var(--w-text); margin-bottom:9px; align-items:flex-start;}
+  .ct .ct-list li b{color:var(--w-brand);}
+  .ct .ct-ctas{margin-top:auto; padding-top:14px;}
+  .w-cta{display:block; width:100%; text-align:center; background:var(--w-brand); color:#fff; font-size:14.5px; font-weight:700; padding:13px; border-radius:16px; border:none; margin-top:8px;}
+  .w-cta.sec{background:#fff; color:var(--w-brand); border:1.5px solid var(--w-brand);}
+  .w-cta.ghost{background:transparent; color:var(--w-text-2); font-weight:600;}
+
+  /* drilldown screen */
+  .dd-scroll{padding:14px; height:100%; overflow:hidden;}
+  .reassure{background:var(--w-brand-tint); border:1px solid var(--w-brand-stroke); border-radius:16px; padding:17px 16px; text-align:center; margin-bottom:13px;}
+  .reassure .r-ic{font-size:30px;}
+  .reassure .r-title{font-size:16px; font-weight:700; color:var(--w-brand); margin-top:6px; line-height:1.35;}
+  .reassure .r-body{font-size:12.5px; color:#7a1257; margin-top:7px; line-height:1.55;}
+  .reassure .r-date{display:inline-block; background:#fff; color:var(--w-brand); font-weight:700; font-size:13px; padding:5px 13px; border-radius:999px; margin-top:11px; border:1px solid var(--w-brand-stroke);}
+  .dd-card{background:#fff; border:1px solid var(--w-stroke); border-radius:14px; padding:14px; margin-bottom:11px;}
+  .dd-card .dt{font-size:12px; font-weight:700; color:var(--w-text); margin-bottom:10px;}
+  .dd-stats{display:flex;}
+  .dd-stat{flex:1; text-align:center;} .dd-stat + .dd-stat{border-left:1px solid var(--w-stroke);}
+  .dd-stat .v{font-size:18px; font-weight:700;} .dd-stat .l{font-size:10px; color:var(--w-text-2);}
+  .quality{display:flex; gap:10px; align-items:center; background:var(--w-pos-bg); border-radius:12px; padding:12px 13px; margin-bottom:11px;}
+  .quality .qi{font-size:20px;} .quality .qt{font-size:12px; color:#0a5e32; font-weight:600; line-height:1.45;}
+  .support-row{text-align:center; font-size:12px; color:var(--w-brand); font-weight:600; padding:10px;}
+
+  /* tables */
+  table.grid{width:100%; border-collapse:collapse; font-size:13.5px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  table.grid th{background:var(--page); text-align:left; padding:10px 13px; font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-2); border-bottom:1px solid var(--line);}
+  table.grid td{padding:10px 13px; border-bottom:1px solid var(--line); vertical-align:top;}
+  table.grid tr:last-child td{border-bottom:none;}
+  table.grid td b{color:var(--ink);}
+  .badge{display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:5px;}
+  .b-info{background:var(--blue-soft); color:var(--blue);} .b-ok{background:var(--green-soft); color:var(--green);}
+  .b-warn{background:var(--amber-soft); color:var(--amber);} .b-brand{background:#FCE3F3; color:var(--magenta);}
+  .note{margin-top:16px; font-size:13px; color:var(--ink-2); background:#fff; border:1px solid var(--line); border-left:3px solid var(--magenta); border-radius:10px; padding:13px 15px;}
+  .note b{color:var(--ink);}
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:18px;} @media(max-width:880px){.two{grid-template-columns:1fr;}}
+  code{background:var(--page); border:1px solid var(--line); border-radius:5px; padding:1px 6px; font-size:12.5px; color:var(--magenta);}
+  .fine{margin-top:30px; font-size:12px; color:var(--ink-3); border-top:1px solid var(--line); padding-top:16px;}
+</style>
+</head>
+<body>
+<div style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #EAE7DF;box-shadow:0 1px 6px rgba(22,16,33,.05)">
+  <div style="max-width:1180px;margin:0 auto;padding:10px 22px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+    <span style="font-size:13px;font-weight:700;color:#D9008D;margin-right:6px;letter-spacing:.02em">MBG ·</span>
+    <a href="https://ashishagrawal-iam.github.io/MBG_v1/" style="padding:7px 15px;border-radius:999px;font-size:13px;font-weight:600;text-decoration:none;color:#5C5570;border:1px solid #D8D4CA">Full Journey · Vision</a>
+    <a href="https://ashishagrawal-iam.github.io/MBG_v1/v1.html" style="padding:7px 15px;border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;background:#D9008D;color:#fff;border:1px solid #D9008D">v1 · Ship Now</a>
+  </div>
+</div>
+<div class="wrap">
+
+  <span class="tag">Internal · CSP App · MBG v1 (constrained build)</span>
+  <div class="hero">
+    <p class="eyebrow">Wiom · Minimum Business Guarantee · v1 in-app communication · Jul–Sep 2026</p>
+    <h1>MBG v1 — what we can ship now</h1>
+    <p>The v1 build uses <b>only two surfaces</b>: <b>CleverTap full-page in-app notifications</b> for the big moments, and a single <b>home banner with a drilldown screen</b> for ongoing status. No changes to the assurance strip, chips, or home cards. This page recreates the full MBG journey within those limits — and the drilldown carries one steady message throughout: <b>your bonus arrives on 16 July, you don't need to worry about it, just keep working with quality.</b></p>
+
+    <div class="limits">
+      <div class="limit">
+        <div class="lh">🔔 CleverTap full-page notification</div>
+        <p>Full-screen takeover on Home (Home-allowlisted, as today). Hero + title + body + up to 2 CTAs. Used for: announcement, opt-in, mid-cycle reassurance, and payout day. Routes via the existing <code>PendingRouteBus</code> on CTA tap.</p>
+      </div>
+      <div class="limit">
+        <div class="lh">📢 Home banner → drilldown</div>
+        <p>One <code>WiomBanner</code> at the top of Home (server-driven <code>BannerData</code>). Tapping opens a dedicated <b>Bonus drilldown screen</b> — the only place state, numbers, and the 16-July reassurance live. Persistent, always available.</p>
+      </div>
+    </div>
+    <div class="nope"><b>Out of scope for v1 (unchanged):</b> the assurance strip & chips, the home task feed, the wallet screens, and any new home card. All states below are expressed purely through the two surfaces above.</div>
+
+    <div class="principles">
+      <span class="pchip"><b>Reassure, don't alarm:</b> v1 is trust-first — no "at-risk" fear messaging; the cliff nudge is deferred to a later version</span>
+      <span class="pchip"><b>One steady promise:</b> every drilldown repeats "बोनस 16 जुलाई को · चिंता न करें · क्वालिटी बनाए रखें"</span>
+      <span class="pchip"><b>Quality is the only ask:</b> the CSP's job is good work; Wiom handles the bonus math</span>
+      <span class="pchip"><b>Hindi-first, warm register</b></span>
+      <span class="pchip"><b>Reuses existing components</b> — no new UI primitives</span>
+    </div>
+  </div>
+
+  <!-- RAIL -->
+  <div class="rail">
+    <a class="rstep" href="#s1"><div class="n">STAGE 1</div><div class="t">Announcement</div><div class="c">Hears about the bonus</div><span class="s s-ct">CleverTap</span></a>
+    <a class="rstep" href="#s2"><div class="n">STAGE 2</div><div class="t">Opt-in</div><div class="c">Accepts the bonus</div><span class="s s-ct">CleverTap</span></a>
+    <a class="rstep" href="#s3"><div class="n">STAGE 3</div><div class="t">Bonus active</div><div class="c">Daily status</div><span class="s s-bn">Banner + Drilldown</span></a>
+    <a class="rstep" href="#s4"><div class="n">STAGE 4</div><div class="t">Doing well</div><div class="c">On-track state</div><span class="s s-bn">Banner + Drilldown</span></a>
+    <a class="rstep" href="#s5"><div class="n">STAGE 5</div><div class="t">Keep going</div><div class="c">Below pace / low leads</div><span class="s s-bn">Banner + Drilldown</span></a>
+    <a class="rstep" href="#s6"><div class="n">STAGE 6</div><div class="t">Mid-cycle nudge</div><div class="c">Stay reassured</div><span class="s s-ct">CleverTap</span></a>
+    <a class="rstep" href="#s7"><div class="n">STAGE 7</div><div class="t">Payout day</div><div class="c">16 July — bonus lands</div><span class="s s-ct">CleverTap</span></a>
+  </div>
+
+  <!-- STAGE 1 -->
+  <div class="section" id="s1">
+    <div class="section-head"><div class="kicker">Stage 1 · Announcement</div><h2>The CSP hears about the bonus</h2><p class="sub">A full-page CleverTap takeover on Home — the biggest, clearest way to land the news within v1 limits.</p></div>
+    <div class="stage">
+      <div class="explain">
+        <div class="meta"><span class="mtag trigger">Trigger: scheme launch / shortlisted</span><span class="mtag ct">CleverTap full-page</span></div>
+        <ul>
+          <li><b>One-line promise up top</b> (BV4): the CSP grasps it before reading anything else — "हर महीने ₹5,000 तक का बोनस."</li>
+          <li><b>The 16-July date is introduced here</b> so the payout day is anchored from the very first screen.</li>
+          <li>Two CTAs: <b>"और जानें"</b> (opens the drilldown) and <b>"ठीक है"</b> (dismiss). Both Home-routed via the existing in-app listener.</li>
+        </ul>
+        <div class="why"><b>Why full-page, not a banner here:</b> awareness needs maximum signal once. After this, the banner + drilldown carry the ongoing story — so the full-page is reserved for moments that genuinely deserve a takeover.</div>
+        <div class="copybox"><div class="ch">Copy</div>
+          <div class="copyrow"><div class="k">Kicker</div><div class="v"><span class="hi">नया · सिर्फ़ 3 महीने</span></div></div>
+          <div class="copyrow"><div class="k">Title</div><div class="v"><span class="hi">हर महीने ₹5,000 तक का बोनस</span></div></div>
+          <div class="copyrow"><div class="k">Body</div><div class="v"><span class="hi">अच्छी क्वालिटी के साथ इंस्टॉल करते रहें — हर महीने आपका बोनस पक्का। जुलाई का बोनस 16 जुलाई को आपके वॉलेट में।</span></div></div>
+          <div class="copyrow"><div class="k">CTA</div><div class="v"><span class="hi">और जानें · ठीक है</span></div></div>
+        </div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone"><div class="screen">
+          <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+          <div class="w-body">
+            <div class="ct">
+              <div class="ct-hero"><span class="ct-x">✕</span><div class="ct-emoji">🎉</div><div class="ct-kick hi">नया · सिर्फ़ 3 महीने</div><div class="ct-title hi">हर महीने ₹5,000<br>तक का बोनस</div></div>
+              <div class="ct-content">
+                <div class="ct-body hi">अच्छी क्वालिटी के साथ इंस्टॉल करते रहें — हर महीने आपका बोनस पक्का।</div>
+                <div class="ct-highlight"><div class="h-amt hi">16 जुलाई</div><div class="h-cap hi">जुलाई का बोनस इस दिन वॉलेट में आएगा</div></div>
+                <div class="ct-ctas"><button class="w-cta hi">और जानें</button><button class="w-cta ghost hi">ठीक है</button></div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+        <div class="caption">CleverTap full-page — launch announcement</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE 2 -->
+  <div class="section" id="s2">
+    <div class="section-head"><div class="kicker">Stage 2 · Opt-in</div><h2>The CSP accepts the bonus</h2><p class="sub">A second full-page that states the simple two-way deal and captures acceptance via the CTA payload — the Mutual Compact, realised inside CleverTap.</p></div>
+    <div class="stage">
+      <div class="explain">
+        <div class="meta"><span class="mtag trigger">Trigger: taps "और जानें" / launch follow-up</span><span class="mtag ct">CleverTap full-page (accept CTA)</span></div>
+        <ul>
+          <li><b>The deal in two lines:</b> Wiom sends leads every week; the CSP completes them with quality. Plain, not legal.</li>
+          <li><b>Accept CTA</b> — the button payload is captured by the existing CleverTap listener and recorded as opt-in (no new screen needed).</li>
+          <li>Closes by repeating the <b>16 July</b> anchor and the "don't worry, just do quality work" message that the drilldown will carry forever after.</li>
+        </ul>
+        <div class="why"><b>Why keep opt-in:</b> the Compact is what makes behaviour persist — a recorded "<span class="hi">मैं तैयार हूँ</span>" turns a broadcast into a mutual commitment, even when the only canvas is a notification.</div>
+        <div class="copybox"><div class="ch">Copy</div>
+          <div class="copyrow"><div class="k">Title</div><div class="v"><span class="hi">आपका बोनस, आपका हक़</span></div></div>
+          <div class="copyrow"><div class="k">Wiom</div><div class="v"><span class="hi">हम हर हफ्ते आपको पक्की लीड भेजेंगे</span></div></div>
+          <div class="copyrow"><div class="k">CSP</div><div class="v"><span class="hi">आप अच्छी क्वालिटी के साथ इंस्टॉल पूरे करें</span></div></div>
+          <div class="copyrow"><div class="k">Close</div><div class="v"><span class="hi">बोनस की चिंता न करें — हिसाब हम रखेंगे, बोनस 16 जुलाई को मिलेगा।</span></div></div>
+          <div class="copyrow"><div class="k">CTA</div><div class="v"><span class="hi">मैं तैयार हूँ</span></div></div>
+        </div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone"><div class="screen">
+          <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+          <div class="w-body">
+            <div class="ct">
+              <div class="ct-hero"><span class="ct-x">✕</span><div class="ct-emoji">🤝</div><div class="ct-kick hi">आपसी वादा</div><div class="ct-title hi">आपका बोनस,<br>आपका हक़</div></div>
+              <div class="ct-content">
+                <ul class="ct-list">
+                  <li>📩 <span class="hi"><b>Wiom:</b> हर हफ्ते आपको पक्की लीड भेजेंगे</span></li>
+                  <li>🔧 <span class="hi"><b>आप:</b> अच्छी क्वालिटी के साथ इंस्टॉल पूरे करें</span></li>
+                  <li>🛡️ <span class="hi"><b>बोनस:</b> हिसाब हम रखेंगे — 16 जुलाई को वॉलेट में</span></li>
+                </ul>
+                <div class="ct-ctas"><button class="w-cta hi">मैं तैयार हूँ</button><button class="w-cta ghost hi">बाद में</button></div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+        <div class="caption">CleverTap full-page — opt-in / compact</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE 3 -->
+  <div class="section" id="s3">
+    <div class="section-head"><div class="kicker">Stage 3 · Bonus active (daily)</div><h2>The banner + drilldown become the home of the bonus</h2><p class="sub">From here on, the everyday story lives in one banner and one screen. This is the workhorse of v1 — and the drilldown's reassurance block is identical in every state.</p></div>
+    <div class="stage">
+      <div class="explain">
+        <div class="meta"><span class="mtag trigger">Trigger: opt-in recorded · daily</span><span class="mtag bn">Home banner → Bonus drilldown</span></div>
+        <ul>
+          <li><b>Banner (brand tint):</b> a calm, always-on line on Home — "<span class="hi">आपका बोनस चालू है · 16 जुलाई को मिलेगा</span>." Tapping opens the drilldown.</li>
+          <li><b>Drilldown — the reassurance block is the hero:</b> big, brand-tinted, repeating the date, the "don't worry", and the "keep quality" message. This block is <b>constant across every state</b>.</li>
+          <li>Below it, a <b>low-key "this month so far"</b> row (leads, installs) — informational only, no scary gauge or red.</li>
+          <li>A <b>green quality reminder</b> and a support link round it out.</li>
+        </ul>
+        <div class="why"><b>The whole v1 thesis:</b> the CSP should never have to do bonus math or fear a cliff. One date, one promise, one instruction (quality). Everything else Wiom computes server-side.</div>
+        <div class="copybox"><div class="ch">Copy — the constant reassurance block</div>
+          <div class="copyrow"><div class="k">Banner</div><div class="v"><span class="hi">आपका बोनस चालू है · 16 जुलाई को मिलेगा</span></div></div>
+          <div class="copyrow"><div class="k">DD title</div><div class="v"><span class="hi">आपका बोनस 16 जुलाई को आएगा</span></div></div>
+          <div class="copyrow"><div class="k">DD body</div><div class="v"><span class="hi">बोनस की चिंता बिल्कुल न करें। बस अच्छी क्वालिटी के साथ काम करते रहें — बाकी हम संभाल लेंगे।</span></div></div>
+          <div class="copyrow"><div class="k">Quality</div><div class="v"><span class="hi">अच्छी क्वालिटी = खुश ग्राहक = आपका बोनस पक्का</span></div></div>
+        </div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone"><div class="screen">
+          <div class="w-header"><span class="menu">☰</span><span class="title hi">बोनस</span><span class="ic"></span></div>
+          <div class="w-body"><div class="dd-scroll">
+            <div class="reassure">
+              <div class="r-ic">💛</div>
+              <div class="r-title hi">आपका बोनस 16 जुलाई को आएगा</div>
+              <div class="r-body hi">बोनस की चिंता बिल्कुल न करें। बस अच्छी क्वालिटी के साथ काम करते रहें — बाकी हम संभाल लेंगे।</div>
+              <span class="r-date hi">💰 16 जुलाई · वॉलेट में</span>
+            </div>
+            <div class="dd-card">
+              <div class="dt hi">इस महीने अब तक</div>
+              <div class="dd-stats">
+                <div class="dd-stat"><div class="v">7</div><div class="l hi">लीड मिलीं</div></div>
+                <div class="dd-stat"><div class="v">5</div><div class="l hi">इंस्टॉल</div></div>
+                <div class="dd-stat"><div class="v hi">अच्छी</div><div class="l hi">क्वालिटी</div></div>
+              </div>
+            </div>
+            <div class="quality"><span class="qi">⭐</span><span class="qt hi">अच्छी क्वालिटी = खुश ग्राहक = आपका बोनस पक्का</span></div>
+            <div class="support-row hi">कोई सवाल? सपोर्ट से बात करें →</div>
+          </div></div>
+        </div></div>
+        <div class="caption">Bonus drilldown — reassurance block is the hero</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE 4 -->
+  <div class="section" id="s4">
+    <div class="section-head"><div class="kicker">Stage 4 · Doing well</div><h2>On-track — same screen, warmer banner</h2><p class="sub">When the CSP is doing well, only the banner's tone lifts to positive. The drilldown keeps the identical reassurance — we celebrate effort, not a threshold number.</p></div>
+    <div class="stage">
+      <div class="explain">
+        <div class="meta"><span class="mtag trigger">Trigger: healthy install activity</span><span class="mtag bn">Banner (positive) → same drilldown</span></div>
+        <ul>
+          <li><b>Banner flips to positive green:</b> "<span class="hi">बढ़िया काम! आपका बोनस पक्का · 16 जुलाई को</span>."</li>
+          <li><b>Drilldown unchanged</b> — same reassurance block; the "this month so far" numbers simply read higher. No new layout, no gauge.</li>
+          <li>Keeps the CSP's attention on the one behaviour that matters: <b>quality installs</b>.</li>
+        </ul>
+        <div class="why"><b>Why no celebratory gauge:</b> v1 deliberately avoids turning the bonus into a target the CSP optimises against. "Keep doing good work, the bonus is handled" is calmer and protects against the cliff anxiety entirely.</div>
+        <div class="copybox"><div class="ch">Copy</div>
+          <div class="copyrow"><div class="k">Banner</div><div class="v"><span class="hi">बढ़िया काम! आपका बोनस पक्का · 16 जुलाई को मिलेगा</span></div></div>
+        </div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone"><div class="screen">
+          <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+          <div class="w-body"><div class="w-scroll">
+            <div class="w-banner ok"><div class="accent"></div><div class="bbody"><span class="bi">🌟</span><div style="flex:1"><div class="bt hi">बढ़िया काम! आपका बोनस पक्का</div><div class="bs hi">16 जुलाई को वॉलेट में आएगा →</div></div><span class="arr">›</span></div></div>
+            <div class="lockmini hi">— नीचे का हिस्सा v1 में नहीं बदलता —</div>
+            <div class="ghost">
+              <div class="chip-grid"><div class="a-chip"><div class="lbl hi">आपकी कमाई</div><div class="val">₹1,500</div></div><div class="a-chip"><div class="lbl hi">क्वालिटी</div><div class="val" style="color:var(--w-pos)">✅</div></div></div>
+              <div class="task-card"><div class="tl1 hi">🔧 नया इंस्टॉल · #4471 · विकासनगर</div><div class="tl2 hi">आज शाम तक</div></div>
+              <div class="task-card"><div class="tl1 hi">🔧 नया इंस्टॉल · #4468 · शांति नगर</div><div class="tl2 hi">कल दोपहर तक</div></div>
+            </div>
+          </div></div>
+        </div></div>
+        <div class="caption">Home banner (positive) — strip below unchanged</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE 5 -->
+  <div class="section" id="s5">
+    <div class="section-head"><div class="kicker">Stage 5 · Keep going</div><h2>Below pace or few leads — still reassured, never alarmed</h2><p class="sub">v1's most important behavioural choice: even when activity is low, we do <b>not</b> warn or threaten. We reassure, point at quality, and — for low leads — explicitly take the blame off the CSP.</p></div>
+    <div class="two">
+      <div>
+        <h3>Below pace <span class="badge b-warn">gentle</span></h3>
+        <p class="sub" style="font-size:13.5px">A soft, non-red banner; the drilldown's reassurance is unchanged, with one added line: keep completing your open leads with quality.</p>
+        <div class="phone-wrap" style="margin-top:12px">
+          <div class="phone"><div class="screen">
+            <div class="w-header"><span class="menu">☰</span><span class="title hi">बोनस</span><span class="ic"></span></div>
+            <div class="w-body"><div class="dd-scroll">
+              <div class="reassure">
+                <div class="r-ic">💛</div>
+                <div class="r-title hi">आपका बोनस 16 जुलाई को आएगा</div>
+                <div class="r-body hi">चिंता न करें — बस अपनी खुली लीड अच्छी क्वालिटी के साथ पूरी करते रहें।</div>
+                <span class="r-date hi">💰 16 जुलाई · वॉलेट में</span>
+              </div>
+              <div class="dd-card"><div class="dt hi">इस महीने अब तक</div>
+                <div class="dd-stats"><div class="dd-stat"><div class="v">6</div><div class="l hi">लीड मिलीं</div></div><div class="dd-stat"><div class="v">3</div><div class="l hi">इंस्टॉल</div></div><div class="dd-stat"><div class="v">3</div><div class="l hi">खुली लीड</div></div></div>
+              </div>
+              <div class="quality"><span class="qi">⭐</span><span class="qt hi">अपनी खुली लीड पूरी करें — हर अच्छा इंस्टॉल बोनस को मज़बूत करता है</span></div>
+            </div></div>
+          </div></div>
+          <div class="caption">Below pace — reassure + gentle quality nudge</div>
+        </div>
+      </div>
+      <div>
+        <h3>Few leads <span class="badge b-info">not your fault</span></h3>
+        <p class="sub" style="font-size:13.5px">When Wiom hasn't sent enough leads, the drilldown owns it openly and keeps the bonus promise intact — protecting trust.</p>
+        <div class="phone-wrap" style="margin-top:12px">
+          <div class="phone"><div class="screen">
+            <div class="w-header"><span class="menu">☰</span><span class="title hi">बोनस</span><span class="ic"></span></div>
+            <div class="w-body"><div class="dd-scroll">
+              <div class="reassure">
+                <div class="r-ic">💛</div>
+                <div class="r-title hi">आपका बोनस सुरक्षित है</div>
+                <div class="r-body hi">इस महीने कम लीड मिलीं — यह आप पर निर्भर नहीं। हम आपके इलाके में और ग्राहक लाने पर काम कर रहे हैं। आपको चिंता करने की ज़रूरत नहीं।</div>
+                <span class="r-date hi">💰 16 जुलाई · वॉलेट में</span>
+              </div>
+              <div class="dd-card" style="background:var(--w-info-bg);border-color:transparent"><div class="qt hi" style="color:#4a2a86;font-size:12.5px">कम लीड मिलना डिमांड पर निर्भर है। मिली हुई लीड को अच्छी क्वालिटी के साथ पूरा करते रहें — बस इतना काफ़ी है।</div></div>
+              <div class="support-row hi">कोई सवाल? सपोर्ट से बात करें →</div>
+            </div></div>
+          </div></div>
+          <div class="caption">Few leads — Wiom owns it, bonus stays safe</div>
+        </div>
+      </div>
+    </div>
+    <div class="note"><b>Why no "at-risk" alarm in v1:</b> the full journey's cliff nudge (the quantified "+1 install" warning) needs the assurance chip and a live gauge — both out of scope here. So v1 takes the trust-first path the instruction asks for: keep the CSP calm, anchored on 16 July, and focused on quality. The harder cliff mechanics arrive when the home surfaces open up.</div>
+  </div>
+
+  <!-- STAGE 6 -->
+  <div class="section" id="s6">
+    <div class="section-head"><div class="kicker">Stage 6 · Mid-cycle nudge</div><h2>A reassuring full-page partway through</h2><p class="sub">An optional CleverTap takeover around the second week — purely to re-anchor the date and the calm message, and to drive a visit to the drilldown.</p></div>
+    <div class="stage">
+      <div class="explain">
+        <div class="meta"><span class="mtag trigger">Trigger: ~day 10–12 of cycle</span><span class="mtag ct">CleverTap full-page</span></div>
+        <ul>
+          <li><b>No numbers, no pressure</b> — just "you're doing great, bonus is on 16 July, keep up the quality."</li>
+          <li>Single CTA <b>"मेरा बोनस देखें"</b> opens the drilldown (the place all detail lives).</li>
+          <li>Frequency-capped via CleverTap so it never nags.</li>
+        </ul>
+        <div class="why"><b>Why a mid-cycle touch:</b> the banner is easy to glance past. One gentle full-page re-confirms the promise and keeps the 16-July date top of mind without ever introducing fear.</div>
+        <div class="copybox"><div class="ch">Copy</div>
+          <div class="copyrow"><div class="k">Title</div><div class="v"><span class="hi">आप सही रास्ते पर हैं 👍</span></div></div>
+          <div class="copyrow"><div class="k">Body</div><div class="v"><span class="hi">बोनस की चिंता न करें — अच्छी क्वालिटी के साथ काम करते रहें। जुलाई का बोनस 16 जुलाई को आपके वॉलेट में आएगा।</span></div></div>
+          <div class="copyrow"><div class="k">CTA</div><div class="v"><span class="hi">मेरा बोनस देखें</span></div></div>
+        </div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone"><div class="screen">
+          <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+          <div class="w-body">
+            <div class="ct">
+              <div class="ct-hero"><span class="ct-x">✕</span><div class="ct-emoji">👍</div><div class="ct-kick hi">बोनस अपडेट</div><div class="ct-title hi">आप सही रास्ते<br>पर हैं</div></div>
+              <div class="ct-content">
+                <div class="ct-body hi">बोनस की चिंता न करें — अच्छी क्वालिटी के साथ काम करते रहें।</div>
+                <div class="ct-highlight"><div class="h-amt hi">16 जुलाई</div><div class="h-cap hi">जुलाई का बोनस इस दिन वॉलेट में</div></div>
+                <div class="ct-ctas"><button class="w-cta hi">मेरा बोनस देखें</button><button class="w-cta ghost hi">ठीक है</button></div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+        <div class="caption">CleverTap full-page — mid-cycle reassurance</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE 7 -->
+  <div class="section" id="s7">
+    <div class="section-head"><div class="kicker">Stage 7 · Payout day · 16 July</div><h2>The bonus lands</h2><p class="sub">The promise kept. A celebratory full-page on 16 July confirms the credit and routes to the wallet — closing the loop the announcement opened.</p></div>
+    <div class="stage">
+      <div class="explain">
+        <div class="meta"><span class="mtag trigger">Trigger: bonus credited (16 July)</span><span class="mtag ct">CleverTap full-page → Wallet</span></div>
+        <ul>
+          <li><b>Amount front and centre</b> — the exact bonus credited to the wallet.</li>
+          <li>CTA <b>"वॉलेट देखें"</b> routes to the wallet via the existing pipeline; the banner afterward switches to next-cycle messaging.</li>
+          <li>Reinforces the cause: <b>"आपकी अच्छी क्वालिटी का नतीजा"</b> — your quality work earned this.</li>
+        </ul>
+        <div class="why"><b>Why a full-page for payout:</b> this is the trust pay-off the whole scheme rests on. Seeing the exact promise ("16 July") honoured on the exact day is what makes the CSP believe the next month's promise — the persistence the Cold Start floor demands.</div>
+        <div class="copybox"><div class="ch">Copy</div>
+          <div class="copyrow"><div class="k">Title</div><div class="v"><span class="hi">🎉 आपका बोनस आ गया!</span></div></div>
+          <div class="copyrow"><div class="k">Body</div><div class="v"><span class="hi">₹5,000 आपके वॉलेट में जोड़ दिए गए हैं — आपकी अच्छी क्वालिटी का नतीजा। ऐसे ही काम करते रहें!</span></div></div>
+          <div class="copyrow"><div class="k">CTA</div><div class="v"><span class="hi">वॉलेट देखें</span></div></div>
+        </div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone"><div class="screen">
+          <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+          <div class="w-body">
+            <div class="ct">
+              <div class="ct-hero" style="background:linear-gradient(155deg,#0a9d56,#007a40)"><span class="ct-x">✕</span><div class="ct-emoji">🎉</div><div class="ct-kick hi">16 जुलाई</div><div class="ct-title hi">आपका बोनस<br>आ गया!</div></div>
+              <div class="ct-content">
+                <div class="ct-highlight" style="background:var(--w-pos-bg)"><div class="h-amt" style="color:var(--w-pos)">₹5,000</div><div class="h-cap" style="color:#0a5e32" class="hi"><span class="hi">आपके वॉलेट में जोड़ दिए गए</span></div></div>
+                <div class="ct-body hi">यह आपकी अच्छी क्वालिटी का नतीजा है। ऐसे ही काम करते रहें — अगले महीने फिर बोनस!</div>
+                <div class="ct-ctas"><button class="w-cta hi" style="background:var(--w-pos)">वॉलेट देखें</button><button class="w-cta ghost hi">बंद करें</button></div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+        <div class="caption">CleverTap full-page — payout day, 16 July</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BANNER STATE TABLE -->
+  <div class="section">
+    <div class="section-head"><div class="kicker">Reference A</div><h2>Banner states — one banner, four tones, one drilldown</h2><p class="sub">The home banner is a single server-driven <code>BannerData</code>; only its severity and text change by state. Every state taps into the same drilldown, whose reassurance block never changes.</p></div>
+    <table class="grid">
+      <thead><tr><th style="width:16%">State</th><th style="width:14%">Severity</th><th style="width:38%">Banner copy (Hindi)</th><th>Drilldown emphasis</th></tr></thead>
+      <tbody>
+        <tr><td><b>Active</b></td><td><span class="badge b-brand">brand</span></td><td class="hi">आपका बोनस चालू है · 16 जुलाई को मिलेगा</td><td>Standard reassurance + "this month so far"</td></tr>
+        <tr><td><b>Doing well</b></td><td><span class="badge b-ok">positive</span></td><td class="hi">बढ़िया काम! आपका बोनस पक्का · 16 जुलाई को मिलेगा</td><td>Same reassurance, higher numbers</td></tr>
+        <tr><td><b>Below pace</b></td><td><span class="badge b-info">info (soft)</span></td><td class="hi">आपका बोनस 16 जुलाई को आएगा · खुली लीड पूरी करते रहें</td><td>Reassurance + gentle "complete open leads" line</td></tr>
+        <tr><td><b>Few leads</b></td><td><span class="badge b-info">info</span></td><td class="hi">इस महीने कम लीड मिलीं — चिंता न करें, बोनस सुरक्षित है</td><td>"Not your fault" + bonus safe</td></tr>
+      </tbody>
+    </table>
+    <div class="note"><b>Never used in v1 banners:</b> red/critical severity, the word "<span class="hi">असफल</span>" (fail), "<span class="hi">जोखिम</span>" (risk), or any countdown that implies losing the bonus. Tone stays brand / positive / soft-info only.</div>
+  </div>
+
+  <!-- CT INVENTORY -->
+  <div class="section">
+    <div class="section-head"><div class="kicker">Reference B</div><h2>CleverTap full-page inventory</h2><p class="sub">Four scheduled full-page campaigns, all Home-allowlisted, all routing through the existing in-app listener.</p></div>
+    <table class="grid">
+      <thead><tr><th>#</th><th>Campaign</th><th>Fires</th><th>Primary CTA → route</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><b>Announcement</b></td><td>At launch / on shortlisting</td><td><span class="hi">और जानें</span> → Bonus drilldown</td></tr>
+        <tr><td>2</td><td><b>Opt-in / Compact</b></td><td>Right after announcement</td><td><span class="hi">मैं तैयार हूँ</span> → records opt-in (button payload)</td></tr>
+        <tr><td>3</td><td><b>Mid-cycle reassurance</b></td><td>~Day 10–12, frequency-capped</td><td><span class="hi">मेरा बोनस देखें</span> → Bonus drilldown</td></tr>
+        <tr><td>4</td><td><b>Payout day</b></td><td>On credit, 16 July</td><td><span class="hi">वॉलेट देखें</span> → Wallet</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- BUILD NOTES -->
+  <div class="section">
+    <div class="section-head"><div class="kicker">For engineering</div><h2>v1 footprint — minimal</h2></div>
+    <div class="two">
+      <div class="dd-card" style="background:#fff">
+        <h3>Reused as-is</h3>
+        <ul class="explain" style="margin-top:8px">
+          <li><b>CleverTap in-app pipeline</b> — 4 full-page campaigns; CTAs route via existing <code>PendingRouteBus</code> + <code>CtPageName</code>.</li>
+          <li><b><code>WiomBanner</code></b> — one new server-driven <code>BannerData</code>, tone + text vary by state. No code change.</li>
+          <li>Home-only in-app suppression policy — unchanged.</li>
+        </ul>
+      </div>
+      <div class="dd-card" style="background:#fff">
+        <h3>New to build (small)</h3>
+        <ul class="explain" style="margin-top:8px">
+          <li><b>Bonus drilldown screen</b> — one screen in the home nav graph: constant reassurance block + "this month so far" + quality line + support. Reads state from the home/banner payload.</li>
+          <li><b>Label file</b> <code>mbg_v1_labels_hi_en.json</code> — all copy keys above.</li>
+          <li><b>Opt-in flag</b> — persist the CleverTap accept payload.</li>
+          <li>Backend: banner state + leads/installs counts + bonus date (<code>16 जुलाई</code>, server-driven, not hardcoded) on the home payload.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note"><b>Forward path:</b> when the assurance strip and home cards open up, this v1 upgrades into the full journey (live gauge, "+1 install" cliff nudge, per-lead maturity clocks, in-app payout dialog) without throwing anything away — the drilldown becomes the deep view behind a richer home card.</div>
+  </div>
+
+  <p class="fine">v1 deliberately trades the full journey's cliff mechanics for a calm, trust-first message, per the constraint that only CleverTap full-page notifications and a single banner+drilldown are available. The bonus date shown (<span class="hi">16 जुलाई</span>) is rendered from the server payload. Copy is illustrative Hindi-first draft for review — final strings go through the Copy Agent and the Annu-Bhaiya comprehension test. Mockups use the real Wiom tokens (brand <code style="color:var(--magenta)">#D9008D</code>, header <code style="color:var(--magenta)">#443152</code>, Noto Sans Devanagari, semantic state colours).</p>
+
+</div>
+</body>
+</html>
