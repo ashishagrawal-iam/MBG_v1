@@ -190,7 +190,7 @@
       </div>
       <div class="limit">
         <div class="lh">📢 Home banner → drilldown</div>
-        <p>One <code>WiomBanner</code> at the top of Home (server-driven <code>BannerData</code>). Tapping opens a dedicated <b>Bonus drilldown screen</b> — the only place state, numbers, and the 16-July reassurance live. Persistent, always available.</p>
+        <p>One <code>WiomBanner</code> in the existing <b>purple info style, placed just below the assurance strip</b> on Home (server-driven <code>BannerData</code>). Tapping opens a dedicated <b>Bonus drilldown screen</b> — the only place state, numbers, and the 16-July reassurance live. Persistent, always available.</p>
       </div>
     </div>
     <div class="nope"><b>Out of scope for v1 (unchanged):</b> the assurance strip & chips, the home task feed, the wallet screens, and any new home card. All states below are expressed purely through the two surfaces above.</div>
@@ -302,14 +302,14 @@
       <div class="explain">
         <div class="meta"><span class="mtag trigger">Trigger: opt-in recorded · daily</span><span class="mtag bn">Home banner → Bonus drilldown</span></div>
         <ul>
-          <li><b>Banner (brand tint):</b> a calm, always-on line on Home — "<span class="hi">आपका बोनस चालू है · 16 जुलाई को मिलेगा</span>." Tapping opens the drilldown.</li>
+          <li><b>Banner (purple info, just below the assurance strip):</b> the existing home banner — calm and always-on — "<span class="hi">काम करें, बिना बोनस की चिंता किए</span>." Tapping opens the drilldown.</li>
           <li><b>Drilldown — the reassurance block is the hero:</b> big, brand-tinted, repeating the date, the "don't worry", and the "keep quality" message. This block is <b>constant across every state</b>.</li>
           <li>Below it, a <b>low-key "this month so far"</b> row (leads, installs) — informational only, no scary gauge or red.</li>
           <li>A <b>green quality reminder</b> and a support link round it out.</li>
         </ul>
         <div class="why"><b>The whole v1 thesis:</b> the CSP should never have to do bonus math or fear a cliff. One date, one promise, one instruction (quality). Everything else Wiom computes server-side.</div>
         <div class="copybox"><div class="ch">Copy — the constant reassurance block</div>
-          <div class="copyrow"><div class="k">Banner</div><div class="v"><span class="hi">आपका बोनस चालू है · 16 जुलाई को मिलेगा</span></div></div>
+          <div class="copyrow"><div class="k">Banner</div><div class="v"><span class="hi">काम करें, बिना बोनस की चिंता किए · इस महीने बस अच्छी तरह काम करने पर focus करें</span></div></div>
           <div class="copyrow"><div class="k">DD title</div><div class="v"><span class="hi">आपका बोनस 16 जुलाई को आएगा</span></div></div>
           <div class="copyrow"><div class="k">DD body</div><div class="v"><span class="hi">बोनस की चिंता बिल्कुल न करें। बस अच्छी क्वालिटी के साथ काम करते रहें — बाकी हम संभाल लेंगे।</span></div></div>
           <div class="copyrow"><div class="k">Quality</div><div class="v"><span class="hi">अच्छी क्वालिटी = खुश ग्राहक = आपका बोनस पक्का</span></div></div>
@@ -344,34 +344,42 @@
 
   <!-- STAGE 4 -->
   <div class="section" id="s4">
-    <div class="section-head"><div class="kicker">Stage 4 · Doing well</div><h2>On-track — same screen, warmer banner</h2><p class="sub">When the CSP is doing well, only the banner's tone lifts to positive. The drilldown keeps the identical reassurance — we celebrate effort, not a threshold number.</p></div>
+    <div class="section-head"><div class="kicker">Stage 4 · On the home screen</div><h2>Where the banner lives — right below the assurance strip</h2><p class="sub">The bonus banner is the existing purple info banner, placed just under the (unchangeable) assurance strip. Its tone stays calm; only the copy changes by state, and tapping it always opens the drilldown.</p></div>
     <div class="stage">
       <div class="explain">
-        <div class="meta"><span class="mtag trigger">Trigger: healthy install activity</span><span class="mtag bn">Banner (positive) → same drilldown</span></div>
+        <div class="meta"><span class="mtag trigger">Trigger: on Home, daily</span><span class="mtag bn">Purple info banner → drilldown</span></div>
         <ul>
-          <li><b>Banner flips to positive green:</b> "<span class="hi">बढ़िया काम! आपका बोनस पक्का · 16 जुलाई को</span>."</li>
-          <li><b>Drilldown unchanged</b> — same reassurance block; the "this month so far" numbers simply read higher. No new layout, no gauge.</li>
-          <li>Keeps the CSP's attention on the one behaviour that matters: <b>quality installs</b>.</li>
+          <li><b>Placement:</b> sits directly <b>below the assurance strip</b> — we don't touch the strip, the chips, or the task feed below it.</li>
+          <li><b>Existing component:</b> the standard purple <code>WiomBanner</code> (INFO) — ⓘ icon, left accent bar, chevron to the drilldown. No new UI.</li>
+          <li><b>Copy matches the live banner</b> already in the app: "<span class="hi">काम करें, बिना बोनस की चिंता किए / इस महीने बस अच्छी तरह काम करने पर focus करें</span>."</li>
+          <li><b>Only the copy changes by state</b> — the calm purple style stays constant, so the banner never alarms. The date and detail live one tap deeper, in the drilldown.</li>
         </ul>
-        <div class="why"><b>Why no celebratory gauge:</b> v1 deliberately avoids turning the bonus into a target the CSP optimises against. "Keep doing good work, the bonus is handled" is calmer and protects against the cliff anxiety entirely.</div>
-        <div class="copybox"><div class="ch">Copy</div>
-          <div class="copyrow"><div class="k">Banner</div><div class="v"><span class="hi">बढ़िया काम! आपका बोनस पक्का · 16 जुलाई को मिलेगा</span></div></div>
+        <div class="why"><b>Why keep one calm style:</b> the live banner in the app already nails the v1 tone — work without worrying, focus on quality. We keep exactly that and only swap the copy by state; nothing turns the bonus into a target the CSP anxiously optimises against.</div>
+        <div class="copybox"><div class="ch">Copy — matches the live banner</div>
+          <div class="copyrow"><div class="k">Title</div><div class="v"><span class="hi">काम करें, बिना बोनस की चिंता किए</span></div></div>
+          <div class="copyrow"><div class="k">Subtitle</div><div class="v"><span class="hi">इस महीने बस अच्छी तरह काम करने पर focus करें</span></div></div>
         </div>
       </div>
       <div class="phone-wrap">
         <div class="phone"><div class="screen">
-          <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+          <div class="w-header"><span class="menu">☰</span><span class="title hi">राजेश कुमार</span><span class="ic">🔔</span></div>
           <div class="w-body"><div class="w-scroll">
-            <div class="w-banner ok"><div class="accent"></div><div class="bbody"><span class="bi">🌟</span><div style="flex:1"><div class="bt hi">बढ़िया काम! आपका बोनस पक्का</div><div class="bs hi">16 जुलाई को वॉलेट में आएगा →</div></div><span class="arr">›</span></div></div>
-            <div class="lockmini hi">— नीचे का हिस्सा v1 में नहीं बदलता —</div>
             <div class="ghost">
-              <div class="chip-grid"><div class="a-chip"><div class="lbl hi">आपकी कमाई</div><div class="val">₹1,500</div></div><div class="a-chip"><div class="lbl hi">क्वालिटी</div><div class="val" style="color:var(--w-pos)">✅</div></div></div>
-              <div class="task-card"><div class="tl1 hi">🔧 नया इंस्टॉल · #4471 · विकासनगर</div><div class="tl2 hi">आज शाम तक</div></div>
-              <div class="task-card"><div class="tl1 hi">🔧 नया इंस्टॉल · #4468 · शांति नगर</div><div class="tl2 hi">कल दोपहर तक</div></div>
+              <div class="chip-grid">
+                <div class="a-chip"><div class="lbl hi">कनेक्शन</div><div class="val">18<span style="font-size:12px;color:var(--w-text-2)">/45</span></div></div>
+                <div class="a-chip"><div class="lbl hi">सेवा स्थिति</div><div class="val" style="font-size:13px;color:var(--w-caution)">⚠ 2 समस्याएं</div></div>
+                <div class="a-chip" style="position:relative"><div class="lbl hi">कमाई</div><div class="val">₹10,740</div><span style="position:absolute;top:10px;right:10px;width:7px;height:7px;border-radius:50%;background:var(--w-brand)"></span></div>
+                <div class="a-chip"><div class="lbl hi">काम की स्थिति</div><div class="val" style="color:var(--w-pos)">✓</div></div>
+              </div>
             </div>
+            <div class="lockmini hi">↑ असुरेंस स्ट्रिप — v1 में नहीं बदलती</div>
+            <div class="w-banner info"><div class="accent"></div><div class="bbody"><span class="bi">ⓘ</span><div style="flex:1"><div class="bt hi">काम करें, बिना बोनस की चिंता किए</div><div class="bs hi">इस महीने बस अच्छी तरह काम करने पर focus करें</div></div><span class="arr">›</span></div></div>
+            <div class="lockmini" style="color:var(--w-brand)"><span class="hi">↑ बोनस बैनर — स्ट्रिप के ठीक नीचे</span></div>
+            <div class="task-card"><div class="tl1 hi">🏠 इंस्टॉल · #1100 · Sector 8</div><div class="tl2 hi">समय का प्रस्ताव दें · 3 दिन बाकी</div></div>
+            <div class="task-card"><div class="tl1 hi">🏠 इंस्टॉल · #1101 · Sector 14</div><div class="tl2 hi">समय कन्फर्म होना बाकी · 4 घंटे</div></div>
           </div></div>
         </div></div>
-        <div class="caption">Home banner (positive) — strip below unchanged</div>
+        <div class="caption">Bonus banner — directly below the assurance strip</div>
       </div>
     </div>
   </div>
@@ -502,17 +510,17 @@
 
   <!-- BANNER STATE TABLE -->
   <div class="section">
-    <div class="section-head"><div class="kicker">Reference A</div><h2>Banner states — one banner, four tones, one drilldown</h2><p class="sub">The home banner is a single server-driven <code>BannerData</code>; only its severity and text change by state. Every state taps into the same drilldown, whose reassurance block never changes.</p></div>
+    <div class="section-head"><div class="kicker">Reference A</div><h2>Banner states — one banner, one calm style, one drilldown</h2><p class="sub">The bonus banner is a single server-driven <code>BannerData</code> in the existing purple INFO style, sitting just below the assurance strip. Only the <b>copy</b> changes by state — the style stays constant — and every state taps into the same drilldown, whose 16-July reassurance never changes.</p></div>
     <table class="grid">
-      <thead><tr><th style="width:16%">State</th><th style="width:14%">Severity</th><th style="width:38%">Banner copy (Hindi)</th><th>Drilldown emphasis</th></tr></thead>
+      <thead><tr><th style="width:16%">State</th><th style="width:14%">Severity</th><th style="width:42%">Banner copy (Hindi) — title · subtitle</th><th>Drilldown emphasis</th></tr></thead>
       <tbody>
-        <tr><td><b>Active</b></td><td><span class="badge b-brand">brand</span></td><td class="hi">आपका बोनस चालू है · 16 जुलाई को मिलेगा</td><td>Standard reassurance + "this month so far"</td></tr>
-        <tr><td><b>Doing well</b></td><td><span class="badge b-ok">positive</span></td><td class="hi">बढ़िया काम! आपका बोनस पक्का · 16 जुलाई को मिलेगा</td><td>Same reassurance, higher numbers</td></tr>
-        <tr><td><b>Below pace</b></td><td><span class="badge b-info">info (soft)</span></td><td class="hi">आपका बोनस 16 जुलाई को आएगा · खुली लीड पूरी करते रहें</td><td>Reassurance + gentle "complete open leads" line</td></tr>
-        <tr><td><b>Few leads</b></td><td><span class="badge b-info">info</span></td><td class="hi">इस महीने कम लीड मिलीं — चिंता न करें, बोनस सुरक्षित है</td><td>"Not your fault" + bonus safe</td></tr>
+        <tr><td><b>Active / default</b></td><td><span class="badge b-info">info · purple</span></td><td class="hi">काम करें, बिना बोनस की चिंता किए · इस महीने बस अच्छी तरह काम करने पर focus करें</td><td>16-July reassurance + "this month so far"</td></tr>
+        <tr><td><b>Doing well</b></td><td><span class="badge b-info">info · purple</span></td><td class="hi">बढ़िया काम चल रहा है! · बस ऐसे ही अच्छी क्वालिटी बनाए रखें</td><td>Same reassurance, higher numbers</td></tr>
+        <tr><td><b>Below pace</b></td><td><span class="badge b-info">info · purple</span></td><td class="hi">बिना चिंता किए काम करते रहें · अपनी खुली लीड अच्छी तरह पूरी करें</td><td>Reassurance + gentle "complete open leads"</td></tr>
+        <tr><td><b>Few leads</b></td><td><span class="badge b-info">info · purple</span></td><td class="hi">इस महीने कम लीड मिलीं — चिंता न करें · बोनस सुरक्षित है, बस अच्छा काम करते रहें</td><td>"Not your fault" + bonus safe</td></tr>
       </tbody>
     </table>
-    <div class="note"><b>Never used in v1 banners:</b> red/critical severity, the word "<span class="hi">असफल</span>" (fail), "<span class="hi">जोखिम</span>" (risk), or any countdown that implies losing the bonus. Tone stays brand / positive / soft-info only.</div>
+    <div class="note"><b>Placement & style locked to the live banner:</b> always the purple INFO banner directly below the assurance strip — same ⓘ icon, accent bar, and chevron-to-drilldown as today. <b>Never used in v1:</b> red/critical severity, the words "<span class="hi">असफल</span>" (fail) or "<span class="hi">जोखिम</span>" (risk), or any countdown that implies losing the bonus.</div>
   </div>
 
   <!-- CT INVENTORY -->
