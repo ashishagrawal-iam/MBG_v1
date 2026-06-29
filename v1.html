@@ -158,6 +158,18 @@
   .bonus-note .bn-b{font-size:11.5px; color:#4a2a86; line-height:1.5;}
   .bonus-note .bn-date{display:inline-block; background:#fff; color:var(--w-info); font-weight:700; font-size:11px; padding:3px 11px; border-radius:999px; margin-top:9px; border:1px solid #d9c2f5;}
   .notfault{background:var(--w-info-bg); border-radius:12px; padding:11px 13px; margin-bottom:11px; font-size:11.5px; color:#4a2a86; line-height:1.5;}
+  /* guarantee amount card */
+  .amt-card{background:#fff; border:1px solid var(--w-stroke); border-radius:14px; padding:14px; margin-bottom:11px;}
+  .amt-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px;}
+  .amt-l{font-size:10.5px; color:var(--w-text-2); font-weight:600;}
+  .amt-big{font-size:24px; font-weight:700; color:var(--w-brand); line-height:1.25; margin-top:1px;}
+  .amt-right{text-align:right;}
+  .amt-mid{font-size:19px; font-weight:700; color:var(--w-text); line-height:1.25; margin-top:1px;}
+  .amt-sub{font-size:10px; color:var(--w-text-2); margin-top:1px;}
+  .amt-note{margin-top:11px; font-size:11.5px; font-weight:600; border-radius:9px; padding:8px 10px; line-height:1.45;}
+  .amt-note.ok{background:var(--w-pos-bg); color:#0a5e32;}
+  .amt-note.info{background:var(--w-info-bg); color:#4a2a86;}
+  .amt-note.brand{background:var(--w-brand-tint); color:#8a0059;}
   /* case gallery */
   .case{border-top:1px solid var(--line); padding:28px 0 8px;}
   .case-head{display:flex; gap:13px; align-items:flex-start; margin-bottom:18px;}
@@ -324,7 +336,7 @@
           <li><b>Banner (purple info, just below the assurance strip):</b> calm and always-on — "<span class="hi">इस महीने आपकी कमाई की गारंटी</span>." Tapping opens the drilldown.</li>
           <li><b>Drilldown leads with the MBG:</b> a big, brand-tinted hero saying the month's <b>earnings are guaranteed</b> — do the work, the minimum is assured. This is the primary message.</li>
           <li><b>Then the Bonus, secondary:</b> a smaller block below — "<span class="hi">और आपका बोनस? 16 जुलाई को · चिंता न करें</span>" — so the Bonus is clearly an add-on, not the headline.</li>
-          <li>A low-key <b>"this month so far"</b> row (leads, installs, quality) — informational only, no gauge or red — plus a quality reminder and support link.</li>
+          <li>An <b>amount card</b> makes the guarantee concrete: <b>"इस महीने की गारंटी ₹5,000"</b>, earning so far, and the top-up Wiom will add (or "above guarantee — full amount yours" when they've beaten it). The 70% rate is never shown — just the rupees.</li>
         </ul>
         <div class="why"><b>The whole v1 thesis:</b> the CSP should never have to do bonus math or fear a cliff. The guarantee comes first (your earnings are safe), the bonus is a bonus (handled, lands 16 July), and the only instruction is quality. Everything else Wiom computes server-side.</div>
         <div class="copybox"><div class="ch">Copy — MBG first, Bonus second</div>
@@ -344,13 +356,12 @@
               <div class="r-body hi">जितना काम करेंगे उसका पैसा तो मिलेगा ही — और Wiom इस महीने आपकी एक न्यूनतम कमाई की गारंटी भी देता है। बस अच्छा काम करते रहें।</div>
               <span class="r-tag hi">🛡️ न्यूनतम कमाई पक्की</span>
             </div>
-            <div class="dd-card">
-              <div class="dt hi">इस महीने अब तक</div>
-              <div class="dd-stats">
-                <div class="dd-stat"><div class="v">7</div><div class="l hi">लीड मिलीं</div></div>
-                <div class="dd-stat"><div class="v">5</div><div class="l hi">इंस्टॉल</div></div>
-                <div class="dd-stat"><div class="v hi">अच्छी</div><div class="l hi">क्वालिटी</div></div>
+            <div class="amt-card">
+              <div class="amt-top">
+                <div><div class="amt-l hi">इस महीने की गारंटी</div><div class="amt-big">₹5,000</div></div>
+                <div class="amt-right"><div class="amt-l hi">अभी तक कमाई</div><div class="amt-mid">₹1,500</div><div class="amt-sub hi">5 इंस्टॉल × ₹300</div></div>
               </div>
+              <div class="amt-note brand hi">Wiom ₹3,500 जोड़कर आपकी ₹5,000 की गारंटी पूरी करेगा</div>
             </div>
             <div class="sec-label hi">और आपका बोनस?</div>
             <div class="bonus-note">
@@ -426,9 +437,7 @@
                 <div class="r-body hi">अपनी मिली हुई लीड अच्छी क्वालिटी के साथ पूरी करते रहें — हर इंस्टॉल आपको गारंटी के और करीब ले जाता है।</div>
                 <span class="r-tag hi">🛡️ गारंटी पक्की करें</span>
               </div>
-              <div class="dd-card"><div class="dt hi">इस महीने अब तक</div>
-                <div class="dd-stats"><div class="dd-stat"><div class="v">6</div><div class="l hi">लीड मिलीं</div></div><div class="dd-stat"><div class="v">3</div><div class="l hi">इंस्टॉल</div></div><div class="dd-stat"><div class="v">3</div><div class="l hi">खुली लीड</div></div></div>
-              </div>
+              <div class="amt-card"><div class="amt-top"><div><div class="amt-l hi">गारंटी राशि</div><div class="amt-big">₹5,000</div></div><div class="amt-right"><div class="amt-l hi">अभी तक कमाई</div><div class="amt-mid">₹900</div><div class="amt-sub hi">3 इंस्टॉल · 3 खुली लीड</div></div></div><div class="amt-note info hi">अपनी 3 खुली लीड पूरी करें — ₹5,000 की गारंटी आपके हाथ में है</div></div>
               <div class="sec-label hi">और आपका बोनस?</div>
               <div class="bonus-note"><div class="bn-t hi">बोनस की चिंता न करें</div><div class="bn-b hi">बोनस 16 जुलाई को वॉलेट में आएगा। बस क्वालिटी अच्छी रखें।</div><span class="bn-date hi">💰 16 जुलाई</span></div>
             </div></div>
@@ -449,6 +458,7 @@
                 <div class="r-body hi">यह आप पर निर्भर नहीं — हम आपके इलाके में और ग्राहक लाने पर काम कर रहे हैं। आपकी हर इंस्टॉल की कमाई पूरी तरह सुरक्षित है।</div>
                 <span class="r-tag hi">📩 हम और लीड भेज रहे हैं</span>
               </div>
+              <div class="amt-card"><div class="amt-top"><div><div class="amt-l hi">अभी तक कमाई</div><div class="amt-big" style="color:var(--w-text)">₹600</div><div class="amt-sub hi">2 इंस्टॉल × ₹300</div></div></div><div class="amt-note info hi">गारंटी इस महीने लागू नहीं — इसके लिए कम से कम 3 लीड चाहिए। यह आप पर निर्भर नहीं।</div></div>
               <div class="notfault hi">कम लीड मिलना डिमांड पर निर्भर है। मिली हुई लीड को अच्छी क्वालिटी के साथ पूरा करते रहें — बस इतना काफ़ी है।</div>
               <div class="sec-label hi">और आपका बोनस?</div>
               <div class="bonus-note"><div class="bn-t hi">बोनस की चिंता न करें</div><div class="bn-b hi">बोनस 16 जुलाई को वॉलेट में आएगा। आपको कुछ नहीं करना — बस क्वालिटी अच्छी रखें।</div><span class="bn-date hi">💰 16 जुलाई</span></div>
@@ -567,7 +577,7 @@
             <div class="w-header"><span class="menu">☰</span><span class="title hi">आपकी कमाई</span><span class="ic"></span></div>
             <div class="w-body"><div class="dd-scroll">
               <div class="reassure"><div class="r-ic">🛡️</div><div class="r-title hi">इस महीने आपकी कमाई की गारंटी</div><div class="r-body hi">जितना काम करेंगे उसका पैसा तो मिलेगा ही — और Wiom इस महीने आपकी एक न्यूनतम कमाई की गारंटी भी देता है। बस अच्छा काम करते रहें।</div><span class="r-tag hi">🛡️ न्यूनतम कमाई पक्की</span></div>
-              <div class="dd-card"><div class="dt hi">इस महीने अब तक</div><div class="dd-stats"><div class="dd-stat"><div class="v">7</div><div class="l hi">लीड मिलीं</div></div><div class="dd-stat"><div class="v">5</div><div class="l hi">इंस्टॉल</div></div><div class="dd-stat"><div class="v hi">अच्छी</div><div class="l hi">क्वालिटी</div></div></div></div>
+              <div class="amt-card"><div class="amt-top"><div><div class="amt-l hi">इस महीने की गारंटी</div><div class="amt-big">₹5,000</div></div><div class="amt-right"><div class="amt-l hi">अभी तक कमाई</div><div class="amt-mid">₹1,500</div><div class="amt-sub hi">5 इंस्टॉल × ₹300</div></div></div><div class="amt-note brand hi">Wiom ₹3,500 जोड़कर आपकी ₹5,000 की गारंटी पूरी करेगा</div></div>
               <div class="sec-label hi">और आपका बोनस?</div>
               <div class="bonus-note"><div class="bn-t hi">बोनस की चिंता न करें</div><div class="bn-b hi">आपका बोनस 16 जुलाई को वॉलेट में आएगा। बस अपनी क्वालिटी अच्छी बनाए रखें।</div><span class="bn-date hi">💰 16 जुलाई · वॉलेट में</span></div>
               <div class="support-row hi">कोई सवाल? सपोर्ट से बात करें →</div>
@@ -604,7 +614,7 @@
             <div class="w-header"><span class="menu">☰</span><span class="title hi">आपकी कमाई</span><span class="ic"></span></div>
             <div class="w-body"><div class="dd-scroll">
               <div class="reassure"><div class="r-ic">🛡️</div><div class="r-title hi">इस महीने आपकी कमाई की गारंटी</div><div class="r-body hi">आपका काम शानदार चल रहा है — आप गारंटी की पटरी पर पूरी तरह हैं। बस ऐसे ही अच्छी क्वालिटी बनाए रखें।</div><span class="r-tag hi">🛡️ न्यूनतम कमाई पक्की</span></div>
-              <div class="dd-card"><div class="dt hi">इस महीने अब तक</div><div class="dd-stats"><div class="dd-stat"><div class="v">12</div><div class="l hi">लीड मिलीं</div></div><div class="dd-stat"><div class="v">10</div><div class="l hi">इंस्टॉल</div></div><div class="dd-stat"><div class="v hi">बहुत अच्छी</div><div class="l hi">क्वालिटी</div></div></div></div>
+              <div class="amt-card"><div class="amt-top"><div><div class="amt-l hi">इस महीने की गारंटी</div><div class="amt-big">₹5,000</div></div><div class="amt-right"><div class="amt-l hi">अभी तक कमाई</div><div class="amt-mid" style="color:var(--w-pos)">₹5,400</div><div class="amt-sub hi">18 इंस्टॉल × ₹300</div></div></div><div class="amt-note ok hi">शानदार! आप गारंटी से ऊपर हैं — पूरी ₹5,400 आपकी 🎉</div></div>
               <div class="sec-label hi">और आपका बोनस?</div>
               <div class="bonus-note"><div class="bn-t hi">बोनस की चिंता न करें</div><div class="bn-b hi">आपका बोनस 16 जुलाई को वॉलेट में आएगा। बस अपनी क्वालिटी अच्छी बनाए रखें।</div><span class="bn-date hi">💰 16 जुलाई · वॉलेट में</span></div>
               <div class="support-row hi">कोई सवाल? सपोर्ट से बात करें →</div>
@@ -641,7 +651,7 @@
             <div class="w-header"><span class="menu">☰</span><span class="title hi">आपकी कमाई</span><span class="ic"></span></div>
             <div class="w-body"><div class="dd-scroll">
               <div class="reassure"><div class="r-ic">🛡️</div><div class="r-title hi">गारंटी आपके हाथ में है</div><div class="r-body hi">अपनी मिली हुई लीड अच्छी क्वालिटी के साथ पूरी करते रहें — हर इंस्टॉल आपको गारंटी के और करीब ले जाता है।</div><span class="r-tag hi">🛡️ गारंटी पक्की करें</span></div>
-              <div class="dd-card"><div class="dt hi">इस महीने अब तक</div><div class="dd-stats"><div class="dd-stat"><div class="v">6</div><div class="l hi">लीड मिलीं</div></div><div class="dd-stat"><div class="v">3</div><div class="l hi">इंस्टॉल</div></div><div class="dd-stat"><div class="v">3</div><div class="l hi">खुली लीड</div></div></div></div>
+              <div class="amt-card"><div class="amt-top"><div><div class="amt-l hi">गारंटी राशि</div><div class="amt-big">₹5,000</div></div><div class="amt-right"><div class="amt-l hi">अभी तक कमाई</div><div class="amt-mid">₹900</div><div class="amt-sub hi">3 इंस्टॉल · 3 खुली लीड</div></div></div><div class="amt-note info hi">अपनी 3 खुली लीड पूरी करें — ₹5,000 की गारंटी आपके हाथ में है</div></div>
               <div class="quality"><span class="qi">⭐</span><span class="qt hi">अपनी खुली लीड पूरी करें — हर अच्छा इंस्टॉल कमाई बढ़ाता है</span></div>
               <div class="sec-label hi">और आपका बोनस?</div>
               <div class="bonus-note"><div class="bn-t hi">बोनस की चिंता न करें</div><div class="bn-b hi">बोनस 16 जुलाई को वॉलेट में आएगा। बस क्वालिटी अच्छी रखें।</div><span class="bn-date hi">💰 16 जुलाई</span></div>
@@ -678,6 +688,7 @@
             <div class="w-header"><span class="menu">☰</span><span class="title hi">आपकी कमाई</span><span class="ic"></span></div>
             <div class="w-body"><div class="dd-scroll">
               <div class="reassure"><div class="r-ic">🛡️</div><div class="r-title hi">इस महीने कम लीड मिलीं</div><div class="r-body hi">यह आप पर निर्भर नहीं — हम आपके इलाके में और ग्राहक लाने पर काम कर रहे हैं। आपकी हर इंस्टॉल की कमाई पूरी तरह सुरक्षित है।</div><span class="r-tag hi">📩 हम और लीड भेज रहे हैं</span></div>
+              <div class="amt-card"><div class="amt-top"><div><div class="amt-l hi">अभी तक कमाई</div><div class="amt-big" style="color:var(--w-text)">₹600</div><div class="amt-sub hi">2 इंस्टॉल × ₹300</div></div></div><div class="amt-note info hi">गारंटी इस महीने लागू नहीं — इसके लिए कम से कम 3 लीड चाहिए। यह आप पर निर्भर नहीं।</div></div>
               <div class="notfault hi">कम लीड मिलना डिमांड पर निर्भर है। मिली हुई लीड को अच्छी क्वालिटी के साथ पूरा करते रहें — बस इतना काफ़ी है।</div>
               <div class="sec-label hi">और आपका बोनस?</div>
               <div class="bonus-note"><div class="bn-t hi">बोनस की चिंता न करें</div><div class="bn-b hi">बोनस 16 जुलाई को वॉलेट में आएगा। आपको कुछ नहीं करना — बस क्वालिटी अच्छी रखें।</div><span class="bn-date hi">💰 16 जुलाई</span></div>
