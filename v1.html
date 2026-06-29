@@ -150,6 +150,25 @@
   .quality{display:flex; gap:10px; align-items:center; background:var(--w-pos-bg); border-radius:12px; padding:12px 13px; margin-bottom:11px;}
   .quality .qi{font-size:20px;} .quality .qt{font-size:12px; color:#0a5e32; font-weight:600; line-height:1.45;}
   .support-row{text-align:center; font-size:12px; color:var(--w-brand); font-weight:600; padding:10px;}
+  /* MBG hero gets a guarantee pill; bonus is the secondary block */
+  .reassure .r-tag{display:inline-block; background:#fff; color:var(--w-brand); font-weight:700; font-size:11.5px; padding:4px 12px; border-radius:999px; margin-top:10px; border:1px solid var(--w-brand-stroke);}
+  .sec-label{font-size:11px; font-weight:700; letter-spacing:.04em; color:var(--w-text-3); text-transform:uppercase; margin:2px 2px 7px;}
+  .bonus-note{background:var(--w-info-bg); border-radius:14px; padding:13px 14px; margin-bottom:11px;}
+  .bonus-note .bn-t{font-size:12.5px; font-weight:700; color:var(--w-info); margin-bottom:4px;}
+  .bonus-note .bn-b{font-size:11.5px; color:#4a2a86; line-height:1.5;}
+  .bonus-note .bn-date{display:inline-block; background:#fff; color:var(--w-info); font-weight:700; font-size:11px; padding:3px 11px; border-radius:999px; margin-top:9px; border:1px solid #d9c2f5;}
+  .notfault{background:var(--w-info-bg); border-radius:12px; padding:11px 13px; margin-bottom:11px; font-size:11.5px; color:#4a2a86; line-height:1.5;}
+  /* case gallery */
+  .case{border-top:1px solid var(--line); padding:28px 0 8px;}
+  .case-head{display:flex; gap:13px; align-items:flex-start; margin-bottom:18px;}
+  .case-n{flex:none; width:30px; height:30px; border-radius:50%; background:var(--magenta); color:#fff; font-weight:700; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .case-head h3{font-size:17px; margin:0 0 3px;}
+  .case-head p{margin:0; font-size:13.5px; color:var(--ink-2); max-width:78ch;}
+  .case-head p b{color:var(--ink);}
+  .case-phones{display:flex; gap:34px; flex-wrap:wrap; align-items:flex-start;}
+  .pcol{display:flex; flex-direction:column; align-items:center;}
+  .glabel{font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--magenta); margin-bottom:9px; display:flex; align-items:center; gap:6px;}
+  .glabel .arrow{color:var(--ink-3);}
 
   /* tables */
   table.grid{width:100%; border-collapse:collapse; font-size:13.5px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
@@ -181,7 +200,7 @@
   <div class="hero">
     <p class="eyebrow">Wiom · Minimum Business Guarantee · v1 in-app communication · Jul–Sep 2026</p>
     <h1>MBG v1 — what we can ship now</h1>
-    <p>The v1 build uses <b>only two surfaces</b>: <b>CleverTap full-page in-app notifications</b> for the big moments, and a single <b>home banner with a drilldown screen</b> for ongoing status. No changes to the assurance strip, chips, or home cards. This page recreates the full MBG journey within those limits — and the drilldown carries one steady message throughout: <b>your bonus arrives on 16 July, you don't need to worry about it, just keep working with quality.</b></p>
+    <p>The v1 build uses <b>only two surfaces</b>: <b>CleverTap full-page in-app notifications</b> for the big moments, and a single <b>home banner with a drilldown screen</b> for ongoing status. No changes to the assurance strip, chips, or home cards. The communication leads with the <b>Minimum Business Guarantee (MBG)</b> — the CSP's earnings for the month are guaranteed — and treats the <b>Bonus as a secondary add-on</b>: it lands on 16 July, they don't need to worry about it, just keep working with quality. So every drilldown talks about the <b>MBG first</b>, then reassures about the Bonus.</p>
 
     <div class="limits">
       <div class="limit">
@@ -197,8 +216,8 @@
 
     <div class="principles">
       <span class="pchip"><b>Reassure, don't alarm:</b> v1 is trust-first — no "at-risk" fear messaging; the cliff nudge is deferred to a later version</span>
-      <span class="pchip"><b>One steady promise:</b> every drilldown repeats "बोनस 16 जुलाई को · चिंता न करें · क्वालिटी बनाए रखें"</span>
-      <span class="pchip"><b>Quality is the only ask:</b> the CSP's job is good work; Wiom handles the bonus math</span>
+      <span class="pchip"><b>MBG first, Bonus second:</b> the drilldown leads with the earnings guarantee, then reassures "बोनस 16 जुलाई को · चिंता न करें · क्वालिटी बनाए रखें"</span>
+      <span class="pchip"><b>Quality is the only ask:</b> the CSP's job is good work; Wiom handles the guarantee + bonus math</span>
       <span class="pchip"><b>Hindi-first, warm register</b></span>
       <span class="pchip"><b>Reuses existing components</b> — no new UI primitives</span>
     </div>
@@ -297,33 +316,33 @@
 
   <!-- STAGE 3 -->
   <div class="section" id="s3">
-    <div class="section-head"><div class="kicker">Stage 3 · Bonus active (daily)</div><h2>The banner + drilldown become the home of the bonus</h2><p class="sub">From here on, the everyday story lives in one banner and one screen. This is the workhorse of v1 — and the drilldown's reassurance block is identical in every state.</p></div>
+    <div class="section-head"><div class="kicker">Stage 3 · Guarantee active (daily)</div><h2>The banner + drilldown become the home of the guarantee</h2><p class="sub">From here on, the everyday story lives in one banner and one screen. This is the workhorse of v1 — the drilldown leads with the <b>MBG (earnings guarantee)</b>, then reassures about the <b>Bonus</b> as a secondary add-on. That structure is identical in every state.</p></div>
     <div class="stage">
       <div class="explain">
-        <div class="meta"><span class="mtag trigger">Trigger: opt-in recorded · daily</span><span class="mtag bn">Home banner → Bonus drilldown</span></div>
+        <div class="meta"><span class="mtag trigger">Trigger: opt-in recorded · daily</span><span class="mtag bn">Home banner → drilldown</span></div>
         <ul>
-          <li><b>Banner (purple info, just below the assurance strip):</b> the existing home banner — calm and always-on — "<span class="hi">काम करें, बिना बोनस की चिंता किए</span>." Tapping opens the drilldown.</li>
-          <li><b>Drilldown — the reassurance block is the hero:</b> big, brand-tinted, repeating the date, the "don't worry", and the "keep quality" message. This block is <b>constant across every state</b>.</li>
-          <li>Below it, a <b>low-key "this month so far"</b> row (leads, installs) — informational only, no scary gauge or red.</li>
-          <li>A <b>green quality reminder</b> and a support link round it out.</li>
+          <li><b>Banner (purple info, just below the assurance strip):</b> calm and always-on — "<span class="hi">इस महीने आपकी कमाई की गारंटी</span>." Tapping opens the drilldown.</li>
+          <li><b>Drilldown leads with the MBG:</b> a big, brand-tinted hero saying the month's <b>earnings are guaranteed</b> — do the work, the minimum is assured. This is the primary message.</li>
+          <li><b>Then the Bonus, secondary:</b> a smaller block below — "<span class="hi">और आपका बोनस? 16 जुलाई को · चिंता न करें</span>" — so the Bonus is clearly an add-on, not the headline.</li>
+          <li>A low-key <b>"this month so far"</b> row (leads, installs, quality) — informational only, no gauge or red — plus a quality reminder and support link.</li>
         </ul>
-        <div class="why"><b>The whole v1 thesis:</b> the CSP should never have to do bonus math or fear a cliff. One date, one promise, one instruction (quality). Everything else Wiom computes server-side.</div>
-        <div class="copybox"><div class="ch">Copy — the constant reassurance block</div>
-          <div class="copyrow"><div class="k">Banner</div><div class="v"><span class="hi">काम करें, बिना बोनस की चिंता किए · इस महीने बस अच्छी तरह काम करने पर focus करें</span></div></div>
-          <div class="copyrow"><div class="k">DD title</div><div class="v"><span class="hi">आपका बोनस 16 जुलाई को आएगा</span></div></div>
-          <div class="copyrow"><div class="k">DD body</div><div class="v"><span class="hi">बोनस की चिंता बिल्कुल न करें। बस अच्छी क्वालिटी के साथ काम करते रहें — बाकी हम संभाल लेंगे।</span></div></div>
-          <div class="copyrow"><div class="k">Quality</div><div class="v"><span class="hi">अच्छी क्वालिटी = खुश ग्राहक = आपका बोनस पक्का</span></div></div>
+        <div class="why"><b>The whole v1 thesis:</b> the CSP should never have to do bonus math or fear a cliff. The guarantee comes first (your earnings are safe), the bonus is a bonus (handled, lands 16 July), and the only instruction is quality. Everything else Wiom computes server-side.</div>
+        <div class="copybox"><div class="ch">Copy — MBG first, Bonus second</div>
+          <div class="copyrow"><div class="k">Banner</div><div class="v"><span class="hi">इस महीने आपकी कमाई की गारंटी · अच्छी क्वालिटी से काम करते रहें</span></div></div>
+          <div class="copyrow"><div class="k">MBG title</div><div class="v"><span class="hi">इस महीने आपकी कमाई की गारंटी</span></div></div>
+          <div class="copyrow"><div class="k">MBG body</div><div class="v"><span class="hi">जितना काम करेंगे उसका पैसा तो मिलेगा ही — और Wiom इस महीने आपकी एक न्यूनतम कमाई की गारंटी भी देता है। बस अच्छा काम करते रहें।</span></div></div>
+          <div class="copyrow"><div class="k">Bonus (2nd)</div><div class="v"><span class="hi">और आपका बोनस? 16 जुलाई को वॉलेट में आएगा — चिंता न करें, बस क्वालिटी अच्छी रखें।</span></div></div>
         </div>
       </div>
       <div class="phone-wrap">
         <div class="phone"><div class="screen">
-          <div class="w-header"><span class="menu">☰</span><span class="title hi">बोनस</span><span class="ic"></span></div>
+          <div class="w-header"><span class="menu">☰</span><span class="title hi">आपकी कमाई</span><span class="ic"></span></div>
           <div class="w-body"><div class="dd-scroll">
             <div class="reassure">
-              <div class="r-ic">💛</div>
-              <div class="r-title hi">आपका बोनस 16 जुलाई को आएगा</div>
-              <div class="r-body hi">बोनस की चिंता बिल्कुल न करें। बस अच्छी क्वालिटी के साथ काम करते रहें — बाकी हम संभाल लेंगे।</div>
-              <span class="r-date hi">💰 16 जुलाई · वॉलेट में</span>
+              <div class="r-ic">🛡️</div>
+              <div class="r-title hi">इस महीने आपकी कमाई की गारंटी</div>
+              <div class="r-body hi">जितना काम करेंगे उसका पैसा तो मिलेगा ही — और Wiom इस महीने आपकी एक न्यूनतम कमाई की गारंटी भी देता है। बस अच्छा काम करते रहें।</div>
+              <span class="r-tag hi">🛡️ न्यूनतम कमाई पक्की</span>
             </div>
             <div class="dd-card">
               <div class="dt hi">इस महीने अब तक</div>
@@ -333,11 +352,17 @@
                 <div class="dd-stat"><div class="v hi">अच्छी</div><div class="l hi">क्वालिटी</div></div>
               </div>
             </div>
-            <div class="quality"><span class="qi">⭐</span><span class="qt hi">अच्छी क्वालिटी = खुश ग्राहक = आपका बोनस पक्का</span></div>
+            <div class="sec-label hi">और आपका बोनस?</div>
+            <div class="bonus-note">
+              <div class="bn-t hi">बोनस की चिंता न करें</div>
+              <div class="bn-b hi">आपका बोनस 16 जुलाई को वॉलेट में आएगा। बस अपनी क्वालिटी अच्छी बनाए रखें।</div>
+              <span class="bn-date hi">💰 16 जुलाई · वॉलेट में</span>
+            </div>
+            <div class="quality"><span class="qi">⭐</span><span class="qt hi">अच्छी क्वालिटी = खुश ग्राहक = बेहतर कमाई</span></div>
             <div class="support-row hi">कोई सवाल? सपोर्ट से बात करें →</div>
           </div></div>
         </div></div>
-        <div class="caption">Bonus drilldown — reassurance block is the hero</div>
+        <div class="caption">Drilldown — MBG hero first, Bonus second</div>
       </div>
     </div>
   </div>
@@ -393,21 +418,22 @@
         <p class="sub" style="font-size:13.5px">A soft, non-red banner; the drilldown's reassurance is unchanged, with one added line: keep completing your open leads with quality.</p>
         <div class="phone-wrap" style="margin-top:12px">
           <div class="phone"><div class="screen">
-            <div class="w-header"><span class="menu">☰</span><span class="title hi">बोनस</span><span class="ic"></span></div>
+            <div class="w-header"><span class="menu">☰</span><span class="title hi">आपकी कमाई</span><span class="ic"></span></div>
             <div class="w-body"><div class="dd-scroll">
               <div class="reassure">
-                <div class="r-ic">💛</div>
-                <div class="r-title hi">आपका बोनस 16 जुलाई को आएगा</div>
-                <div class="r-body hi">चिंता न करें — बस अपनी खुली लीड अच्छी क्वालिटी के साथ पूरी करते रहें।</div>
-                <span class="r-date hi">💰 16 जुलाई · वॉलेट में</span>
+                <div class="r-ic">🛡️</div>
+                <div class="r-title hi">आपकी कमाई की गारंटी सुरक्षित है</div>
+                <div class="r-body hi">कोई चिंता नहीं — अपनी खुली लीड अच्छी क्वालिटी के साथ पूरी करते रहें। हर इंस्टॉल आपकी कमाई बढ़ाता है।</div>
+                <span class="r-tag hi">🛡️ न्यूनतम कमाई पक्की</span>
               </div>
               <div class="dd-card"><div class="dt hi">इस महीने अब तक</div>
                 <div class="dd-stats"><div class="dd-stat"><div class="v">6</div><div class="l hi">लीड मिलीं</div></div><div class="dd-stat"><div class="v">3</div><div class="l hi">इंस्टॉल</div></div><div class="dd-stat"><div class="v">3</div><div class="l hi">खुली लीड</div></div></div>
               </div>
-              <div class="quality"><span class="qi">⭐</span><span class="qt hi">अपनी खुली लीड पूरी करें — हर अच्छा इंस्टॉल बोनस को मज़बूत करता है</span></div>
+              <div class="sec-label hi">और आपका बोनस?</div>
+              <div class="bonus-note"><div class="bn-t hi">बोनस की चिंता न करें</div><div class="bn-b hi">बोनस 16 जुलाई को वॉलेट में आएगा। बस क्वालिटी अच्छी रखें।</div><span class="bn-date hi">💰 16 जुलाई</span></div>
             </div></div>
           </div></div>
-          <div class="caption">Below pace — reassure + gentle quality nudge</div>
+          <div class="caption">Below pace — MBG first, gentle quality nudge</div>
         </div>
       </div>
       <div>
@@ -415,19 +441,21 @@
         <p class="sub" style="font-size:13.5px">When Wiom hasn't sent enough leads, the drilldown owns it openly and keeps the bonus promise intact — protecting trust.</p>
         <div class="phone-wrap" style="margin-top:12px">
           <div class="phone"><div class="screen">
-            <div class="w-header"><span class="menu">☰</span><span class="title hi">बोनस</span><span class="ic"></span></div>
+            <div class="w-header"><span class="menu">☰</span><span class="title hi">आपकी कमाई</span><span class="ic"></span></div>
             <div class="w-body"><div class="dd-scroll">
               <div class="reassure">
-                <div class="r-ic">💛</div>
-                <div class="r-title hi">आपका बोनस सुरक्षित है</div>
-                <div class="r-body hi">इस महीने कम लीड मिलीं — यह आप पर निर्भर नहीं। हम आपके इलाके में और ग्राहक लाने पर काम कर रहे हैं। आपको चिंता करने की ज़रूरत नहीं।</div>
-                <span class="r-date hi">💰 16 जुलाई · वॉलेट में</span>
+                <div class="r-ic">🛡️</div>
+                <div class="r-title hi">आपकी कमाई की गारंटी सुरक्षित है</div>
+                <div class="r-body hi">इस महीने कम लीड मिलीं — यह आप पर निर्भर नहीं। हम आपके इलाके में और ग्राहक लाने पर काम कर रहे हैं। आपकी गारंटी फिर भी सुरक्षित है।</div>
+                <span class="r-tag hi">🛡️ गारंटी सुरक्षित</span>
               </div>
-              <div class="dd-card" style="background:var(--w-info-bg);border-color:transparent"><div class="qt hi" style="color:#4a2a86;font-size:12.5px">कम लीड मिलना डिमांड पर निर्भर है। मिली हुई लीड को अच्छी क्वालिटी के साथ पूरा करते रहें — बस इतना काफ़ी है।</div></div>
+              <div class="notfault hi">कम लीड मिलना डिमांड पर निर्भर है। मिली हुई लीड को अच्छी क्वालिटी के साथ पूरा करते रहें — बस इतना काफ़ी है।</div>
+              <div class="sec-label hi">और आपका बोनस?</div>
+              <div class="bonus-note"><div class="bn-t hi">बोनस की चिंता न करें</div><div class="bn-b hi">बोनस 16 जुलाई को वॉलेट में आएगा। आपको कुछ नहीं करना — बस क्वालिटी अच्छी रखें।</div><span class="bn-date hi">💰 16 जुलाई</span></div>
               <div class="support-row hi">कोई सवाल? सपोर्ट से बात करें →</div>
             </div></div>
           </div></div>
-          <div class="caption">Few leads — Wiom owns it, bonus stays safe</div>
+          <div class="caption">Few leads — Wiom owns it, guarantee stays safe</div>
         </div>
       </div>
     </div>
@@ -496,7 +524,7 @@
             <div class="ct">
               <div class="ct-hero" style="background:linear-gradient(155deg,#0a9d56,#007a40)"><span class="ct-x">✕</span><div class="ct-emoji">🎉</div><div class="ct-kick hi">16 जुलाई</div><div class="ct-title hi">आपका बोनस<br>आ गया!</div></div>
               <div class="ct-content">
-                <div class="ct-highlight" style="background:var(--w-pos-bg)"><div class="h-amt" style="color:var(--w-pos)">₹5,000</div><div class="h-cap" style="color:#0a5e32" class="hi"><span class="hi">आपके वॉलेट में जोड़ दिए गए</span></div></div>
+                <div class="ct-highlight" style="background:var(--w-pos-bg)"><div class="h-amt" style="color:var(--w-pos)">₹5,000</div><div class="h-cap hi" style="color:#0a5e32">आपके वॉलेट में जोड़ दिए गए</div></div>
                 <div class="ct-body hi">यह आपकी अच्छी क्वालिटी का नतीजा है। ऐसे ही काम करते रहें — अगले महीने फिर बोनस!</div>
                 <div class="ct-ctas"><button class="w-cta hi" style="background:var(--w-pos)">वॉलेट देखें</button><button class="w-cta ghost hi">बंद करें</button></div>
               </div>
@@ -508,19 +536,159 @@
     </div>
   </div>
 
-  <!-- BANNER STATE TABLE -->
+  <!-- CASE GALLERY -->
   <div class="section">
-    <div class="section-head"><div class="kicker">Reference A</div><h2>Banner states — one banner, one calm style, one drilldown</h2><p class="sub">The bonus banner is a single server-driven <code>BannerData</code> in the existing purple INFO style, sitting just below the assurance strip. Only the <b>copy</b> changes by state — the style stays constant — and every state taps into the same drilldown, whose 16-July reassurance never changes.</p></div>
-    <table class="grid">
-      <thead><tr><th style="width:16%">State</th><th style="width:14%">Severity</th><th style="width:42%">Banner copy (Hindi) — title · subtitle</th><th>Drilldown emphasis</th></tr></thead>
-      <tbody>
-        <tr><td><b>Active / default</b></td><td><span class="badge b-info">info · purple</span></td><td class="hi">काम करें, बिना बोनस की चिंता किए · इस महीने बस अच्छी तरह काम करने पर focus करें</td><td>16-July reassurance + "this month so far"</td></tr>
-        <tr><td><b>Doing well</b></td><td><span class="badge b-info">info · purple</span></td><td class="hi">बढ़िया काम चल रहा है! · बस ऐसे ही अच्छी क्वालिटी बनाए रखें</td><td>Same reassurance, higher numbers</td></tr>
-        <tr><td><b>Below pace</b></td><td><span class="badge b-info">info · purple</span></td><td class="hi">बिना चिंता किए काम करते रहें · अपनी खुली लीड अच्छी तरह पूरी करें</td><td>Reassurance + gentle "complete open leads"</td></tr>
-        <tr><td><b>Few leads</b></td><td><span class="badge b-info">info · purple</span></td><td class="hi">इस महीने कम लीड मिलीं — चिंता न करें · बोनस सुरक्षित है, बस अच्छा काम करते रहें</td><td>"Not your fault" + bonus safe</td></tr>
-      </tbody>
-    </table>
-    <div class="note"><b>Placement & style locked to the live banner:</b> always the purple INFO banner directly below the assurance strip — same ⓘ icon, accent bar, and chevron-to-drilldown as today. <b>Never used in v1:</b> red/critical severity, the words "<span class="hi">असफल</span>" (fail) or "<span class="hi">जोखिम</span>" (risk), or any countdown that implies losing the bonus.</div>
+    <div class="section-head"><div class="kicker">Reference A</div><h2>The four cases — home banner + its drilldown</h2><p class="sub">Every case is the same purple INFO banner below the assurance strip → the same drilldown that <b>leads with the MBG (earnings guarantee)</b> and then reassures about the <b>Bonus (secondary, lands 16 July)</b>. Only the copy changes by state; the structure and calm tone never do.</p></div>
+
+    <!-- CASE 1 -->
+    <div class="case">
+      <div class="case-head"><span class="case-n">1</span><div><h3>Active / default <span class="badge b-info">resting state</span></h3><p>The everyday state. Banner states the guarantee; the drilldown leads with MBG, then folds in the bonus reassurance below.</p></div></div>
+      <div class="case-phones">
+        <div class="pcol">
+          <div class="glabel">📢 Home banner</div>
+          <div class="phone"><div class="screen">
+            <div class="w-header"><span class="menu">☰</span><span class="title hi">राजेश कुमार</span><span class="ic">🔔</span></div>
+            <div class="w-body"><div class="w-scroll">
+              <div class="ghost"><div class="chip-grid">
+                <div class="a-chip"><div class="lbl hi">कनेक्शन</div><div class="val">18<span style="font-size:12px;color:var(--w-text-2)">/45</span></div></div>
+                <div class="a-chip"><div class="lbl hi">सेवा स्थिति</div><div class="val" style="font-size:13px;color:var(--w-caution)">⚠ 2 समस्याएं</div></div>
+                <div class="a-chip" style="position:relative"><div class="lbl hi">कमाई</div><div class="val">₹10,740</div><span style="position:absolute;top:10px;right:10px;width:7px;height:7px;border-radius:50%;background:var(--w-brand)"></span></div>
+                <div class="a-chip"><div class="lbl hi">काम की स्थिति</div><div class="val" style="color:var(--w-pos)">✓</div></div>
+              </div></div>
+              <div class="lockmini hi">↑ असुरेंस स्ट्रिप — नहीं बदलती</div>
+              <div class="w-banner info"><div class="accent"></div><div class="bbody"><span class="bi">ⓘ</span><div style="flex:1"><div class="bt hi">इस महीने आपकी कमाई की गारंटी</div><div class="bs hi">अच्छी क्वालिटी से काम करते रहें</div></div><span class="arr">›</span></div></div>
+              <div class="task-card"><div class="tl1 hi">🏠 इंस्टॉल · #1100 · Sector 8</div><div class="tl2 hi">समय का प्रस्ताव दें · 3 दिन बाकी</div></div>
+            </div></div>
+          </div></div>
+        </div>
+        <div class="pcol">
+          <div class="glabel"><span class="arrow">↳</span> Drilldown (on tap)</div>
+          <div class="phone"><div class="screen">
+            <div class="w-header"><span class="menu">☰</span><span class="title hi">आपकी कमाई</span><span class="ic"></span></div>
+            <div class="w-body"><div class="dd-scroll">
+              <div class="reassure"><div class="r-ic">🛡️</div><div class="r-title hi">इस महीने आपकी कमाई की गारंटी</div><div class="r-body hi">जितना काम करेंगे उसका पैसा तो मिलेगा ही — और Wiom इस महीने आपकी एक न्यूनतम कमाई की गारंटी भी देता है। बस अच्छा काम करते रहें।</div><span class="r-tag hi">🛡️ न्यूनतम कमाई पक्की</span></div>
+              <div class="dd-card"><div class="dt hi">इस महीने अब तक</div><div class="dd-stats"><div class="dd-stat"><div class="v">7</div><div class="l hi">लीड मिलीं</div></div><div class="dd-stat"><div class="v">5</div><div class="l hi">इंस्टॉल</div></div><div class="dd-stat"><div class="v hi">अच्छी</div><div class="l hi">क्वालिटी</div></div></div></div>
+              <div class="sec-label hi">और आपका बोनस?</div>
+              <div class="bonus-note"><div class="bn-t hi">बोनस की चिंता न करें</div><div class="bn-b hi">आपका बोनस 16 जुलाई को वॉलेट में आएगा। बस अपनी क्वालिटी अच्छी बनाए रखें।</div><span class="bn-date hi">💰 16 जुलाई · वॉलेट में</span></div>
+              <div class="support-row hi">कोई सवाल? सपोर्ट से बात करें →</div>
+            </div></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE 2 -->
+    <div class="case">
+      <div class="case-head"><span class="case-n">2</span><div><h3>Doing well <span class="badge b-ok">healthy</span></h3><p>Lots of quality installs. Same calm purple banner — warmer copy; the drilldown's numbers simply read higher. No celebratory gauge, no target.</p></div></div>
+      <div class="case-phones">
+        <div class="pcol">
+          <div class="glabel">📢 Home banner</div>
+          <div class="phone"><div class="screen">
+            <div class="w-header"><span class="menu">☰</span><span class="title hi">राजेश कुमार</span><span class="ic">🔔</span></div>
+            <div class="w-body"><div class="w-scroll">
+              <div class="ghost"><div class="chip-grid">
+                <div class="a-chip"><div class="lbl hi">कनेक्शन</div><div class="val">27<span style="font-size:12px;color:var(--w-text-2)">/45</span></div></div>
+                <div class="a-chip"><div class="lbl hi">सेवा स्थिति</div><div class="val" style="color:var(--w-pos)">✓</div></div>
+                <div class="a-chip" style="position:relative"><div class="lbl hi">कमाई</div><div class="val">₹14,200</div><span style="position:absolute;top:10px;right:10px;width:7px;height:7px;border-radius:50%;background:var(--w-brand)"></span></div>
+                <div class="a-chip"><div class="lbl hi">काम की स्थिति</div><div class="val" style="color:var(--w-pos)">✓</div></div>
+              </div></div>
+              <div class="lockmini hi">↑ असुरेंस स्ट्रिप — नहीं बदलती</div>
+              <div class="w-banner info"><div class="accent"></div><div class="bbody"><span class="bi">ⓘ</span><div style="flex:1"><div class="bt hi">बढ़िया! आपकी कमाई की गारंटी पक्की</div><div class="bs hi">ऐसे ही अच्छी क्वालिटी बनाए रखें</div></div><span class="arr">›</span></div></div>
+              <div class="task-card"><div class="tl1 hi">🏠 इंस्टॉल · #1142 · Sector 12</div><div class="tl2 hi">समय पक्का हुआ · टीम मेंबर चुनें</div></div>
+            </div></div>
+          </div></div>
+        </div>
+        <div class="pcol">
+          <div class="glabel"><span class="arrow">↳</span> Drilldown (on tap)</div>
+          <div class="phone"><div class="screen">
+            <div class="w-header"><span class="menu">☰</span><span class="title hi">आपकी कमाई</span><span class="ic"></span></div>
+            <div class="w-body"><div class="dd-scroll">
+              <div class="reassure"><div class="r-ic">🛡️</div><div class="r-title hi">इस महीने आपकी कमाई की गारंटी</div><div class="r-body hi">आपका काम शानदार चल रहा है — आपकी कमाई की गारंटी पूरी तरह सुरक्षित है। बस ऐसे ही अच्छी क्वालिटी बनाए रखें।</div><span class="r-tag hi">🛡️ न्यूनतम कमाई पक्की</span></div>
+              <div class="dd-card"><div class="dt hi">इस महीने अब तक</div><div class="dd-stats"><div class="dd-stat"><div class="v">12</div><div class="l hi">लीड मिलीं</div></div><div class="dd-stat"><div class="v">10</div><div class="l hi">इंस्टॉल</div></div><div class="dd-stat"><div class="v hi">बहुत अच्छी</div><div class="l hi">क्वालिटी</div></div></div></div>
+              <div class="sec-label hi">और आपका बोनस?</div>
+              <div class="bonus-note"><div class="bn-t hi">बोनस की चिंता न करें</div><div class="bn-b hi">आपका बोनस 16 जुलाई को वॉलेट में आएगा। बस अपनी क्वालिटी अच्छी बनाए रखें।</div><span class="bn-date hi">💰 16 जुलाई · वॉलेट में</span></div>
+              <div class="support-row hi">कोई सवाल? सपोर्ट से बात करें →</div>
+            </div></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE 3 -->
+    <div class="case">
+      <div class="case-head"><span class="case-n">3</span><div><h3>Below pace <span class="badge b-warn">gentle</span></h3><p>Activity is low, but we <b>never warn or threaten</b>. The guarantee is restated as safe; the only nudge is a soft "complete your open leads with quality."</p></div></div>
+      <div class="case-phones">
+        <div class="pcol">
+          <div class="glabel">📢 Home banner</div>
+          <div class="phone"><div class="screen">
+            <div class="w-header"><span class="menu">☰</span><span class="title hi">राजेश कुमार</span><span class="ic">🔔</span></div>
+            <div class="w-body"><div class="w-scroll">
+              <div class="ghost"><div class="chip-grid">
+                <div class="a-chip"><div class="lbl hi">कनेक्शन</div><div class="val">9<span style="font-size:12px;color:var(--w-text-2)">/45</span></div></div>
+                <div class="a-chip"><div class="lbl hi">सेवा स्थिति</div><div class="val" style="font-size:13px;color:var(--w-caution)">⚠ 1 समस्या</div></div>
+                <div class="a-chip" style="position:relative"><div class="lbl hi">कमाई</div><div class="val">₹5,400</div><span style="position:absolute;top:10px;right:10px;width:7px;height:7px;border-radius:50%;background:var(--w-brand)"></span></div>
+                <div class="a-chip"><div class="lbl hi">काम की स्थिति</div><div class="val" style="color:var(--w-pos)">✓</div></div>
+              </div></div>
+              <div class="lockmini hi">↑ असुरेंस स्ट्रिप — नहीं बदलती</div>
+              <div class="w-banner info"><div class="accent"></div><div class="bbody"><span class="bi">ⓘ</span><div style="flex:1"><div class="bt hi">आपकी कमाई की गारंटी सुरक्षित है</div><div class="bs hi">अपनी खुली लीड पूरी करते रहें</div></div><span class="arr">›</span></div></div>
+              <div class="task-card"><div class="tl1 hi">🏠 इंस्टॉल · #1108 · Sector 8</div><div class="tl2 hi">समय कन्फर्म होना बाकी · 2 दिन</div></div>
+            </div></div>
+          </div></div>
+        </div>
+        <div class="pcol">
+          <div class="glabel"><span class="arrow">↳</span> Drilldown (on tap)</div>
+          <div class="phone"><div class="screen">
+            <div class="w-header"><span class="menu">☰</span><span class="title hi">आपकी कमाई</span><span class="ic"></span></div>
+            <div class="w-body"><div class="dd-scroll">
+              <div class="reassure"><div class="r-ic">🛡️</div><div class="r-title hi">आपकी कमाई की गारंटी सुरक्षित है</div><div class="r-body hi">कोई चिंता नहीं — अपनी खुली लीड अच्छी क्वालिटी के साथ पूरी करते रहें। हर इंस्टॉल आपकी कमाई बढ़ाता है।</div><span class="r-tag hi">🛡️ न्यूनतम कमाई पक्की</span></div>
+              <div class="dd-card"><div class="dt hi">इस महीने अब तक</div><div class="dd-stats"><div class="dd-stat"><div class="v">6</div><div class="l hi">लीड मिलीं</div></div><div class="dd-stat"><div class="v">3</div><div class="l hi">इंस्टॉल</div></div><div class="dd-stat"><div class="v">3</div><div class="l hi">खुली लीड</div></div></div></div>
+              <div class="quality"><span class="qi">⭐</span><span class="qt hi">अपनी खुली लीड पूरी करें — हर अच्छा इंस्टॉल कमाई बढ़ाता है</span></div>
+              <div class="sec-label hi">और आपका बोनस?</div>
+              <div class="bonus-note"><div class="bn-t hi">बोनस की चिंता न करें</div><div class="bn-b hi">बोनस 16 जुलाई को वॉलेट में आएगा। बस क्वालिटी अच्छी रखें।</div><span class="bn-date hi">💰 16 जुलाई</span></div>
+            </div></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE 4 -->
+    <div class="case">
+      <div class="case-head"><span class="case-n">4</span><div><h3>Few leads <span class="badge b-info">not your fault</span></h3><p>When Wiom hasn't sent enough leads, the drilldown <b>owns it openly</b> — the guarantee stays safe and the blame is explicitly taken off the CSP.</p></div></div>
+      <div class="case-phones">
+        <div class="pcol">
+          <div class="glabel">📢 Home banner</div>
+          <div class="phone"><div class="screen">
+            <div class="w-header"><span class="menu">☰</span><span class="title hi">राजेश कुमार</span><span class="ic">🔔</span></div>
+            <div class="w-body"><div class="w-scroll">
+              <div class="ghost"><div class="chip-grid">
+                <div class="a-chip"><div class="lbl hi">कनेक्शन</div><div class="val">2<span style="font-size:12px;color:var(--w-text-2)">/45</span></div></div>
+                <div class="a-chip"><div class="lbl hi">सेवा स्थिति</div><div class="val" style="color:var(--w-pos)">✓</div></div>
+                <div class="a-chip" style="position:relative"><div class="lbl hi">कमाई</div><div class="val">₹1,200</div><span style="position:absolute;top:10px;right:10px;width:7px;height:7px;border-radius:50%;background:var(--w-brand)"></span></div>
+                <div class="a-chip"><div class="lbl hi">काम की स्थिति</div><div class="val" style="color:var(--w-pos)">✓</div></div>
+              </div></div>
+              <div class="lockmini hi">↑ असुरेंस स्ट्रिप — नहीं बदलती</div>
+              <div class="w-banner info"><div class="accent"></div><div class="bbody"><span class="bi">ⓘ</span><div style="flex:1"><div class="bt hi">आपकी कमाई की गारंटी सुरक्षित है</div><div class="bs hi">कम लीड मिलीं — चिंता न करें</div></div><span class="arr">›</span></div></div>
+              <div class="task-card"><div class="tl1 hi">🏠 इंस्टॉल · #1099 · Sector 14</div><div class="tl2 hi">समय का प्रस्ताव दें · 4 दिन बाकी</div></div>
+            </div></div>
+          </div></div>
+        </div>
+        <div class="pcol">
+          <div class="glabel"><span class="arrow">↳</span> Drilldown (on tap)</div>
+          <div class="phone"><div class="screen">
+            <div class="w-header"><span class="menu">☰</span><span class="title hi">आपकी कमाई</span><span class="ic"></span></div>
+            <div class="w-body"><div class="dd-scroll">
+              <div class="reassure"><div class="r-ic">🛡️</div><div class="r-title hi">आपकी कमाई की गारंटी सुरक्षित है</div><div class="r-body hi">इस महीने कम लीड मिलीं — यह आप पर निर्भर नहीं। हम आपके इलाके में और ग्राहक लाने पर काम कर रहे हैं। आपकी गारंटी फिर भी सुरक्षित है।</div><span class="r-tag hi">🛡️ गारंटी सुरक्षित</span></div>
+              <div class="notfault hi">कम लीड मिलना डिमांड पर निर्भर है। मिली हुई लीड को अच्छी क्वालिटी के साथ पूरा करते रहें — बस इतना काफ़ी है।</div>
+              <div class="sec-label hi">और आपका बोनस?</div>
+              <div class="bonus-note"><div class="bn-t hi">बोनस की चिंता न करें</div><div class="bn-b hi">बोनस 16 जुलाई को वॉलेट में आएगा। आपको कुछ नहीं करना — बस क्वालिटी अच्छी रखें।</div><span class="bn-date hi">💰 16 जुलाई</span></div>
+              <div class="support-row hi">कोई सवाल? सपोर्ट से बात करें →</div>
+            </div></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note"><b>Hierarchy locked:</b> MBG (the earnings guarantee) is the hero of every drilldown; the Bonus is always the smaller block below it, framed as a handled add-on that lands <b>16 July</b>. <b>Placement & style locked to the live banner:</b> purple INFO banner directly below the assurance strip — ⓘ icon, accent bar, chevron-to-drilldown. <b>Never used in v1:</b> red/critical severity, the words "<span class="hi">असफल</span>" (fail) or "<span class="hi">जोखिम</span>" (risk), or any countdown implying a lost bonus.</div>
   </div>
 
   <!-- CT INVENTORY -->
