@@ -234,7 +234,7 @@
   <div class="hero">
     <p class="eyebrow">Wiom · Minimum Business Guarantee · v1 in-app communication · Jul–Sep 2026</p>
     <h1>MBG v1 — what we can ship now</h1>
-    <p>The v1 build uses <b>only two surfaces</b>: <b>CleverTap full-page in-app notifications</b> for the big moments, and a single <b>home banner with a drilldown screen</b> for ongoing status. No changes to the assurance strip, chips, or home cards. The communication leads with the <b>Minimum Business Guarantee (MBG)</b> — the CSP's earnings for the month are guaranteed — and treats the <b>Bonus as a secondary add-on</b>: it lands on 16 July, they don't need to worry about it, just keep working with quality. So every drilldown talks about the <b>MBG first</b>, then reassures about the Bonus.</p>
+    <p>The v1 build uses <b>only two surfaces</b>: <b>CleverTap full-page in-app notifications</b> for the big moments, and a single <b>home banner with a drilldown screen</b> for ongoing status. No changes to the assurance strip, chips, or home cards. The communication leads with the <b>Minimum Business Guarantee (MBG)</b> — branded to CSPs as <b>कमाई कवच</b> ("earnings shield"): cross the 70% install threshold and the month's earnings are guaranteed. It is <b>not</b> a "bonus" (that would imply unconditional extra). A separate, genuinely secondary <b>Bonus</b> lands on 16 July and is mentioned only in small, reassuring blocks. So every drilldown leads with <b>कमाई कवच first</b>, then a small Bonus reassurance.</p>
 
     <div class="limits">
       <div class="limit">
@@ -250,7 +250,7 @@
 
     <div class="principles">
       <span class="pchip"><b>Show eligibility, stay calm:</b> the drilldown carries the eligibility gauge (install rate vs the <b>70% target</b>) + the ₹ amount, like the full journey. Below 70% is framed as "you can get there — finish your leads", never as a threat</span>
-      <span class="pchip"><b>MBG first, Bonus second:</b> the drilldown leads with the earnings guarantee, then reassures "बोनस 16 जुलाई को · चिंता न करें · क्वालिटी बनाए रखें"</span>
+      <span class="pchip"><b>कमाई कवच first, Bonus second:</b> the MBG is branded <b>कमाई कवच</b> (earnings shield, threshold-gated) — never "बोनस". The drilldown leads with it, then a small "बोनस 16 जुलाई को · चिंता न करें" reassurance</span>
       <span class="pchip"><b>Quality is the only ask:</b> the CSP's job is good work; Wiom handles the guarantee + bonus math</span>
       <span class="pchip"><b>Hindi-first, warm register</b></span>
       <span class="pchip"><b>Reuses existing components</b> — no new UI primitives</span>
@@ -270,20 +270,21 @@
 
   <!-- STAGE 1 -->
   <div class="section" id="s1">
-    <div class="section-head"><div class="kicker">Stage 1 · Announcement</div><h2>The CSP hears about the bonus</h2><p class="sub">A full-page CleverTap takeover on Home — the biggest, clearest way to land the news within v1 limits.</p></div>
+    <div class="section-head"><div class="kicker">Stage 1 · Announcement</div><h2>The CSP hears about कमाई कवच (the MBG)</h2><p class="sub">A full-page CleverTap takeover on Home — the biggest, clearest way to land the news within v1 limits.</p></div>
     <div class="stage">
       <div class="explain">
         <div class="meta"><span class="mtag trigger">Trigger: scheme launch / shortlisted</span><span class="mtag mct">CleverTap full-page</span></div>
         <ul>
-          <li><b>One-line promise up top</b> (BV4): the CSP grasps it before reading anything else — "हर महीने ₹5,000 तक का बोनस."</li>
+          <li><b>One-line promise up top</b> (BV4): the CSP grasps it before reading anything else — "हर महीने ₹5,000 तक की कमाई पक्की" (the scheme is named <b>कमाई कवच</b>, never "बोनस").</li>
           <li><b>The 16-July date is introduced here</b> so the payout day is anchored from the very first screen.</li>
           <li>Two CTAs: <b>"और जानें"</b> (opens the drilldown) and <b>"ठीक है"</b> (dismiss). Both Home-routed via the existing in-app listener.</li>
         </ul>
         <div class="why"><b>Why full-page, not a banner here:</b> awareness needs maximum signal once. After this, the banner + drilldown carry the ongoing story — so the full-page is reserved for moments that genuinely deserve a takeover.</div>
         <div class="copybox"><div class="ch">Copy</div>
           <div class="copyrow"><div class="k">Kicker</div><div class="v"><span class="hi">नया · सिर्फ़ 3 महीने</span></div></div>
-          <div class="copyrow"><div class="k">Title</div><div class="v"><span class="hi">हर महीने ₹5,000 तक का बोनस</span></div></div>
-          <div class="copyrow"><div class="k">Body</div><div class="v"><span class="hi">अच्छी क्वालिटी के साथ इंस्टॉल करते रहें — हर महीने आपका बोनस पक्का। जुलाई का बोनस 16 जुलाई को आपके वॉलेट में।</span></div></div>
+          <div class="copyrow"><div class="k">Title</div><div class="v"><span class="hi">हर महीने ₹5,000 तक की कमाई पक्की · कमाई कवच</span></div></div>
+          <div class="copyrow"><div class="k">Body</div><div class="v"><span class="hi">अच्छी क्वालिटी के साथ इंस्टॉल करते रहें — हर महीने आपकी कमाई का कवच, Wiom की ओर से।</span></div></div>
+          <div class="copyrow"><div class="k">Bonus (small)</div><div class="v"><span class="hi">और आपका बोनस? 16 जुलाई को वॉलेट में आएगा — चिंता न करें।</span></div></div>
           <div class="copyrow"><div class="k">CTA</div><div class="v"><span class="hi">और जानें · ठीक है</span></div></div>
         </div>
       </div>
@@ -292,10 +293,11 @@
           <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
           <div class="w-body">
             <div class="ct">
-              <div class="ct-hero"><span class="ct-x">✕</span><div class="ct-emoji">🎉</div><div class="ct-kick hi">नया · सिर्फ़ 3 महीने</div><div class="ct-title hi">हर महीने ₹5,000<br>तक का बोनस</div></div>
+              <div class="ct-hero"><span class="ct-x">✕</span><div class="ct-emoji">🛡️</div><div class="ct-kick hi">नया · कमाई कवच · सिर्फ़ 3 महीने</div><div class="ct-title hi">हर महीने ₹5,000<br>तक की कमाई पक्की</div></div>
               <div class="ct-content">
-                <div class="ct-body hi">अच्छी क्वालिटी के साथ इंस्टॉल करते रहें — हर महीने आपका बोनस पक्का।</div>
-                <div class="ct-highlight"><div class="h-amt hi">16 जुलाई</div><div class="h-cap hi">जुलाई का बोनस इस दिन वॉलेट में आएगा</div></div>
+                <div class="ct-body hi">अच्छी क्वालिटी के साथ इंस्टॉल करते रहें — हर महीने आपकी कमाई का कवच, Wiom की ओर से।</div>
+                <div class="sec-label hi" style="margin-top:18px">और आपका बोनस?</div>
+                <div class="bonus-note"><div class="bn-b hi">आपका बोनस 16 जुलाई को वॉलेट में आएगा — इसकी चिंता न करें, बस क्वालिटी अच्छी रखें।</div></div>
                 <div class="ct-ctas"><button class="w-cta hi">और जानें</button><button class="w-cta ghost hi">ठीक है</button></div>
               </div>
             </div>
@@ -308,7 +310,7 @@
 
   <!-- STAGE 2 -->
   <div class="section" id="s2">
-    <div class="section-head"><div class="kicker">Stage 2 · Opt-in</div><h2>The CSP accepts the bonus</h2><p class="sub">A second full-page that states the simple two-way deal and captures acceptance via the CTA payload — the Mutual Compact, realised inside CleverTap.</p></div>
+    <div class="section-head"><div class="kicker">Stage 2 · Opt-in</div><h2>The CSP accepts कमाई कवच</h2><p class="sub">A second full-page that states the simple two-way deal and captures acceptance via the CTA payload — the Mutual Compact, realised inside CleverTap.</p></div>
     <div class="stage">
       <div class="explain">
         <div class="meta"><span class="mtag trigger">Trigger: taps "और जानें" / launch follow-up</span><span class="mtag mct">CleverTap full-page (accept CTA)</span></div>
@@ -319,10 +321,10 @@
         </ul>
         <div class="why"><b>Why keep opt-in:</b> the Compact is what makes behaviour persist — a recorded "<span class="hi">मैं तैयार हूँ</span>" turns a broadcast into a mutual commitment, even when the only canvas is a notification.</div>
         <div class="copybox"><div class="ch">Copy</div>
-          <div class="copyrow"><div class="k">Title</div><div class="v"><span class="hi">आपका बोनस, आपका हक़</span></div></div>
+          <div class="copyrow"><div class="k">Title</div><div class="v"><span class="hi">कमाई कवच — आपका हक़</span></div></div>
           <div class="copyrow"><div class="k">Wiom</div><div class="v"><span class="hi">हम हर हफ्ते आपको पक्की लीड भेजेंगे</span></div></div>
           <div class="copyrow"><div class="k">CSP</div><div class="v"><span class="hi">आप अच्छी क्वालिटी के साथ इंस्टॉल पूरे करें</span></div></div>
-          <div class="copyrow"><div class="k">Close</div><div class="v"><span class="hi">बोनस की चिंता न करें — हिसाब हम रखेंगे, बोनस 16 जुलाई को मिलेगा।</span></div></div>
+          <div class="copyrow"><div class="k">Close</div><div class="v"><span class="hi">हिसाब हम रखेंगे — आपकी कमाई पक्की। (बोनस भी 16 जुलाई को मिलेगा — चिंता न करें।)</span></div></div>
           <div class="copyrow"><div class="k">CTA</div><div class="v"><span class="hi">मैं तैयार हूँ</span></div></div>
         </div>
       </div>
@@ -331,12 +333,12 @@
           <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
           <div class="w-body">
             <div class="ct">
-              <div class="ct-hero"><span class="ct-x">✕</span><div class="ct-emoji">🤝</div><div class="ct-kick hi">आपसी वादा</div><div class="ct-title hi">आपका बोनस,<br>आपका हक़</div></div>
+              <div class="ct-hero"><span class="ct-x">✕</span><div class="ct-emoji">🤝</div><div class="ct-kick hi">आपसी वादा</div><div class="ct-title hi">कमाई कवच —<br>आपका हक़</div></div>
               <div class="ct-content">
                 <ul class="ct-list">
                   <li>📩 <span class="hi"><b>Wiom:</b> हर हफ्ते आपको पक्की लीड भेजेंगे</span></li>
                   <li>🔧 <span class="hi"><b>आप:</b> अच्छी क्वालिटी के साथ इंस्टॉल पूरे करें</span></li>
-                  <li>🛡️ <span class="hi"><b>बोनस:</b> हिसाब हम रखेंगे — 16 जुलाई को वॉलेट में</span></li>
+                  <li>🛡️ <span class="hi"><b>कमाई कवच:</b> हर महीने ₹5,000 तक पक्के — हिसाब हम रखेंगे</span></li>
                 </ul>
                 <div class="ct-ctas"><button class="w-cta hi">मैं तैयार हूँ</button><button class="w-cta ghost hi">बाद में</button></div>
               </div>
@@ -379,7 +381,7 @@
               <span class="r-tag hi">🛡️ न्यूनतम कमाई पक्की</span>
             </div>
             <div class="mbg-status">
-              <div class="ms-amtrow"><div><div class="ms-l hi">इस महीने की गारंटी</div><div class="ms-amt">₹5,000</div></div><div class="ms-right"><div class="ms-l hi">अभी तक कमाई</div><div class="ms-earn">₹1,500</div><div class="ms-sub2 hi">5 इंस्टॉल</div></div></div>
+              <div class="ms-amtrow"><div><div class="ms-l hi">कमाई कवच · इस महीने</div><div class="ms-amt">₹5,000</div></div><div class="ms-right"><div class="ms-l hi">अभी तक कमाई</div><div class="ms-earn">₹1,500</div><div class="ms-sub2 hi">5 इंस्टॉल</div></div></div>
               <div class="gauge g-ok"><div class="fill" style="width:71%"></div><div class="mark"></div></div>
               <div class="gauge-row"><span class="hi">इंस्टॉल दर 71%</span><span class="hi">लक्ष्य 70% ✓</span></div>
               <div class="ms-stats"><div class="ms-stat"><div class="v">7</div><div class="l hi">लीड मिलीं</div></div><div class="ms-stat"><div class="v">5</div><div class="l hi">इंस्टॉल</div></div><div class="ms-stat"><div class="v">12</div><div class="l hi">दिन बाकी</div></div></div>
@@ -459,7 +461,7 @@
                 <div class="r-body hi">अपनी मिली हुई लीड अच्छी क्वालिटी के साथ पूरी करते रहें — हर इंस्टॉल आपको गारंटी के और करीब ले जाता है।</div>
                 <span class="r-tag hi">🛡️ गारंटी पक्की करें</span>
               </div>
-              <div class="mbg-status"><div class="ms-amtrow"><div><div class="ms-l hi">गारंटी राशि</div><div class="ms-amt">₹5,000<small class="hi"> तक</small></div></div><div class="ms-right"><div class="ms-l hi">अभी तक कमाई</div><div class="ms-earn">₹900</div><div class="ms-sub2 hi">3 इंस्टॉल</div></div></div><div class="gauge g-warn"><div class="fill" style="width:50%"></div><div class="mark"></div></div><div class="gauge-row"><span class="hi">इंस्टॉल दर 50%</span><span class="hi">लक्ष्य 70%</span></div><div class="ms-stats"><div class="ms-stat"><div class="v">6</div><div class="l hi">लीड मिलीं</div></div><div class="ms-stat"><div class="v">3</div><div class="l hi">इंस्टॉल</div></div><div class="ms-stat"><div class="v">5</div><div class="l hi">दिन बाकी</div></div></div><div class="ms-status warn hi">अभी पात्र नहीं — अपनी 3 खुली लीड पूरी करें, दर 70% पार करें</div></div>
+              <div class="mbg-status"><div class="ms-amtrow"><div><div class="ms-l hi">कमाई कवच</div><div class="ms-amt">₹5,000<small class="hi"> तक</small></div></div><div class="ms-right"><div class="ms-l hi">अभी तक कमाई</div><div class="ms-earn">₹900</div><div class="ms-sub2 hi">3 इंस्टॉल</div></div></div><div class="gauge g-warn"><div class="fill" style="width:50%"></div><div class="mark"></div></div><div class="gauge-row"><span class="hi">इंस्टॉल दर 50%</span><span class="hi">लक्ष्य 70%</span></div><div class="ms-stats"><div class="ms-stat"><div class="v">6</div><div class="l hi">लीड मिलीं</div></div><div class="ms-stat"><div class="v">3</div><div class="l hi">इंस्टॉल</div></div><div class="ms-stat"><div class="v">5</div><div class="l hi">दिन बाकी</div></div></div><div class="ms-status warn hi">अभी पात्र नहीं — अपनी 3 खुली लीड पूरी करें, दर 70% पार करें</div></div>
               <div class="sec-label hi">और आपका बोनस?</div>
               <div class="bonus-note"><div class="bn-t hi">बोनस की चिंता न करें</div><div class="bn-b hi">बोनस 16 जुलाई को वॉलेट में आएगा। बस क्वालिटी अच्छी रखें।</div><span class="bn-date hi">💰 16 जुलाई</span></div>
             </div></div>
@@ -502,14 +504,14 @@
         <div class="meta"><span class="mtag trigger">Trigger: ~day 10–12 of cycle</span><span class="mtag mct">CleverTap full-page</span></div>
         <ul>
           <li><b>No numbers, no pressure</b> — just "you're doing great, bonus is on 16 July, keep up the quality."</li>
-          <li>Single CTA <b>"मेरा बोनस देखें"</b> opens the drilldown (the place all detail lives).</li>
+          <li>Single CTA <b>"मेरा कमाई कवच देखें"</b> opens the drilldown (the place all detail lives).</li>
           <li>Frequency-capped via CleverTap so it never nags.</li>
         </ul>
         <div class="why"><b>Why a mid-cycle touch:</b> the banner is easy to glance past. One gentle full-page re-confirms the promise and keeps the 16-July date top of mind without ever introducing fear.</div>
         <div class="copybox"><div class="ch">Copy</div>
           <div class="copyrow"><div class="k">Title</div><div class="v"><span class="hi">आप सही रास्ते पर हैं 👍</span></div></div>
-          <div class="copyrow"><div class="k">Body</div><div class="v"><span class="hi">बोनस की चिंता न करें — अच्छी क्वालिटी के साथ काम करते रहें। जुलाई का बोनस 16 जुलाई को आपके वॉलेट में आएगा।</span></div></div>
-          <div class="copyrow"><div class="k">CTA</div><div class="v"><span class="hi">मेरा बोनस देखें</span></div></div>
+          <div class="copyrow"><div class="k">Body</div><div class="v"><span class="hi">अच्छी क्वालिटी के साथ काम करते रहें — आपका कमाई कवच पटरी पर है। (बोनस 16 जुलाई को वॉलेट में।)</span></div></div>
+          <div class="copyrow"><div class="k">CTA</div><div class="v"><span class="hi">मेरा कमाई कवच देखें</span></div></div>
         </div>
       </div>
       <div class="phone-wrap">
@@ -517,11 +519,11 @@
           <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
           <div class="w-body">
             <div class="ct">
-              <div class="ct-hero"><span class="ct-x">✕</span><div class="ct-emoji">👍</div><div class="ct-kick hi">बोनस अपडेट</div><div class="ct-title hi">आप सही रास्ते<br>पर हैं</div></div>
+              <div class="ct-hero"><span class="ct-x">✕</span><div class="ct-emoji">👍</div><div class="ct-kick hi">कमाई कवच अपडेट</div><div class="ct-title hi">आप सही रास्ते<br>पर हैं</div></div>
               <div class="ct-content">
-                <div class="ct-body hi">बोनस की चिंता न करें — अच्छी क्वालिटी के साथ काम करते रहें।</div>
-                <div class="ct-highlight"><div class="h-amt hi">16 जुलाई</div><div class="h-cap hi">जुलाई का बोनस इस दिन वॉलेट में</div></div>
-                <div class="ct-ctas"><button class="w-cta hi">मेरा बोनस देखें</button><button class="w-cta ghost hi">ठीक है</button></div>
+                <div class="ct-body hi">अच्छी क्वालिटी के साथ काम करते रहें — आपका कमाई कवच पटरी पर है।</div>
+                <div class="ct-highlight"><div class="h-amt hi">16 जुलाई</div><div class="h-cap hi">आपका बोनस इस दिन वॉलेट में — चिंता न करें</div></div>
+                <div class="ct-ctas"><button class="w-cta hi">मेरा कमाई कवच देखें</button><button class="w-cta ghost hi">ठीक है</button></div>
               </div>
             </div>
           </div>
@@ -599,7 +601,7 @@
             <div class="w-header"><span class="menu">☰</span><span class="title hi">आपकी कमाई</span><span class="ic"></span></div>
             <div class="w-body"><div class="dd-scroll">
               <div class="reassure"><div class="r-ic">🛡️</div><div class="r-title hi">इस महीने आपकी कमाई की गारंटी</div><div class="r-body hi">जितना काम करेंगे उसका पैसा तो मिलेगा ही — और Wiom इस महीने आपकी एक न्यूनतम कमाई की गारंटी भी देता है। बस अच्छा काम करते रहें।</div><span class="r-tag hi">🛡️ न्यूनतम कमाई पक्की</span></div>
-              <div class="mbg-status"><div class="ms-amtrow"><div><div class="ms-l hi">इस महीने की गारंटी</div><div class="ms-amt">₹5,000</div></div><div class="ms-right"><div class="ms-l hi">अभी तक कमाई</div><div class="ms-earn">₹1,500</div><div class="ms-sub2 hi">5 इंस्टॉल</div></div></div><div class="gauge g-ok"><div class="fill" style="width:71%"></div><div class="mark"></div></div><div class="gauge-row"><span class="hi">इंस्टॉल दर 71%</span><span class="hi">लक्ष्य 70% ✓</span></div><div class="ms-stats"><div class="ms-stat"><div class="v">7</div><div class="l hi">लीड मिलीं</div></div><div class="ms-stat"><div class="v">5</div><div class="l hi">इंस्टॉल</div></div><div class="ms-stat"><div class="v">12</div><div class="l hi">दिन बाकी</div></div></div><div class="ms-status ok hi">आप पात्र हैं ✓ — Wiom ₹3,500 जोड़कर ₹5,000 पूरा करेगा</div></div>
+              <div class="mbg-status"><div class="ms-amtrow"><div><div class="ms-l hi">कमाई कवच · इस महीने</div><div class="ms-amt">₹5,000</div></div><div class="ms-right"><div class="ms-l hi">अभी तक कमाई</div><div class="ms-earn">₹1,500</div><div class="ms-sub2 hi">5 इंस्टॉल</div></div></div><div class="gauge g-ok"><div class="fill" style="width:71%"></div><div class="mark"></div></div><div class="gauge-row"><span class="hi">इंस्टॉल दर 71%</span><span class="hi">लक्ष्य 70% ✓</span></div><div class="ms-stats"><div class="ms-stat"><div class="v">7</div><div class="l hi">लीड मिलीं</div></div><div class="ms-stat"><div class="v">5</div><div class="l hi">इंस्टॉल</div></div><div class="ms-stat"><div class="v">12</div><div class="l hi">दिन बाकी</div></div></div><div class="ms-status ok hi">आप पात्र हैं ✓ — Wiom ₹3,500 जोड़कर ₹5,000 पूरा करेगा</div></div>
               <div class="sec-label hi">और आपका बोनस?</div>
               <div class="bonus-note"><div class="bn-t hi">बोनस की चिंता न करें</div><div class="bn-b hi">आपका बोनस 16 जुलाई को वॉलेट में आएगा। बस अपनी क्वालिटी अच्छी बनाए रखें।</div><span class="bn-date hi">💰 16 जुलाई · वॉलेट में</span></div>
               <div class="support-row hi">कोई सवाल? सपोर्ट से बात करें →</div>
@@ -636,7 +638,7 @@
             <div class="w-header"><span class="menu">☰</span><span class="title hi">आपकी कमाई</span><span class="ic"></span></div>
             <div class="w-body"><div class="dd-scroll">
               <div class="reassure"><div class="r-ic">🛡️</div><div class="r-title hi">इस महीने आपकी कमाई की गारंटी</div><div class="r-body hi">आपका काम शानदार चल रहा है — आप गारंटी की पटरी पर पूरी तरह हैं। बस ऐसे ही अच्छी क्वालिटी बनाए रखें।</div><span class="r-tag hi">🛡️ न्यूनतम कमाई पक्की</span></div>
-              <div class="mbg-status"><div class="ms-amtrow"><div><div class="ms-l hi">इस महीने की गारंटी</div><div class="ms-amt">₹5,000</div></div><div class="ms-right"><div class="ms-l hi">अभी तक कमाई</div><div class="ms-earn" style="color:var(--w-pos)">₹5,400</div><div class="ms-sub2 hi">18 इंस्टॉल</div></div></div><div class="gauge g-ok"><div class="fill" style="width:75%"></div><div class="mark"></div></div><div class="gauge-row"><span class="hi">इंस्टॉल दर 75%</span><span class="hi">लक्ष्य 70% ✓</span></div><div class="ms-stats"><div class="ms-stat"><div class="v">24</div><div class="l hi">लीड मिलीं</div></div><div class="ms-stat"><div class="v">18</div><div class="l hi">इंस्टॉल</div></div><div class="ms-stat"><div class="v">9</div><div class="l hi">दिन बाकी</div></div></div><div class="ms-status ok hi">आप पात्र हैं ✓ — गारंटी से ऊपर, पूरी ₹5,400 आपकी 🎉</div></div>
+              <div class="mbg-status"><div class="ms-amtrow"><div><div class="ms-l hi">कमाई कवच · इस महीने</div><div class="ms-amt">₹5,000</div></div><div class="ms-right"><div class="ms-l hi">अभी तक कमाई</div><div class="ms-earn" style="color:var(--w-pos)">₹5,400</div><div class="ms-sub2 hi">18 इंस्टॉल</div></div></div><div class="gauge g-ok"><div class="fill" style="width:75%"></div><div class="mark"></div></div><div class="gauge-row"><span class="hi">इंस्टॉल दर 75%</span><span class="hi">लक्ष्य 70% ✓</span></div><div class="ms-stats"><div class="ms-stat"><div class="v">24</div><div class="l hi">लीड मिलीं</div></div><div class="ms-stat"><div class="v">18</div><div class="l hi">इंस्टॉल</div></div><div class="ms-stat"><div class="v">9</div><div class="l hi">दिन बाकी</div></div></div><div class="ms-status ok hi">आप पात्र हैं ✓ — गारंटी से ऊपर, पूरी ₹5,400 आपकी 🎉</div></div>
               <div class="sec-label hi">और आपका बोनस?</div>
               <div class="bonus-note"><div class="bn-t hi">बोनस की चिंता न करें</div><div class="bn-b hi">आपका बोनस 16 जुलाई को वॉलेट में आएगा। बस अपनी क्वालिटी अच्छी बनाए रखें।</div><span class="bn-date hi">💰 16 जुलाई · वॉलेट में</span></div>
               <div class="support-row hi">कोई सवाल? सपोर्ट से बात करें →</div>
@@ -673,7 +675,7 @@
             <div class="w-header"><span class="menu">☰</span><span class="title hi">आपकी कमाई</span><span class="ic"></span></div>
             <div class="w-body"><div class="dd-scroll">
               <div class="reassure"><div class="r-ic">🛡️</div><div class="r-title hi">गारंटी आपके हाथ में है</div><div class="r-body hi">अपनी मिली हुई लीड अच्छी क्वालिटी के साथ पूरी करते रहें — हर इंस्टॉल आपको गारंटी के और करीब ले जाता है।</div><span class="r-tag hi">🛡️ गारंटी पक्की करें</span></div>
-              <div class="mbg-status"><div class="ms-amtrow"><div><div class="ms-l hi">गारंटी राशि</div><div class="ms-amt">₹5,000<small class="hi"> तक</small></div></div><div class="ms-right"><div class="ms-l hi">अभी तक कमाई</div><div class="ms-earn">₹900</div><div class="ms-sub2 hi">3 इंस्टॉल</div></div></div><div class="gauge g-warn"><div class="fill" style="width:50%"></div><div class="mark"></div></div><div class="gauge-row"><span class="hi">इंस्टॉल दर 50%</span><span class="hi">लक्ष्य 70%</span></div><div class="ms-stats"><div class="ms-stat"><div class="v">6</div><div class="l hi">लीड मिलीं</div></div><div class="ms-stat"><div class="v">3</div><div class="l hi">इंस्टॉल</div></div><div class="ms-stat"><div class="v">5</div><div class="l hi">दिन बाकी</div></div></div><div class="ms-status warn hi">अभी पात्र नहीं — अपनी 3 खुली लीड पूरी करें, दर 70% पार करें</div></div>
+              <div class="mbg-status"><div class="ms-amtrow"><div><div class="ms-l hi">कमाई कवच</div><div class="ms-amt">₹5,000<small class="hi"> तक</small></div></div><div class="ms-right"><div class="ms-l hi">अभी तक कमाई</div><div class="ms-earn">₹900</div><div class="ms-sub2 hi">3 इंस्टॉल</div></div></div><div class="gauge g-warn"><div class="fill" style="width:50%"></div><div class="mark"></div></div><div class="gauge-row"><span class="hi">इंस्टॉल दर 50%</span><span class="hi">लक्ष्य 70%</span></div><div class="ms-stats"><div class="ms-stat"><div class="v">6</div><div class="l hi">लीड मिलीं</div></div><div class="ms-stat"><div class="v">3</div><div class="l hi">इंस्टॉल</div></div><div class="ms-stat"><div class="v">5</div><div class="l hi">दिन बाकी</div></div></div><div class="ms-status warn hi">अभी पात्र नहीं — अपनी 3 खुली लीड पूरी करें, दर 70% पार करें</div></div>
               <div class="quality"><span class="qi">⭐</span><span class="qt hi">अपनी खुली लीड पूरी करें — हर अच्छा इंस्टॉल कमाई बढ़ाता है</span></div>
               <div class="sec-label hi">और आपका बोनस?</div>
               <div class="bonus-note"><div class="bn-t hi">बोनस की चिंता न करें</div><div class="bn-b hi">बोनस 16 जुलाई को वॉलेट में आएगा। बस क्वालिटी अच्छी रखें।</div><span class="bn-date hi">💰 16 जुलाई</span></div>
@@ -732,7 +734,7 @@
       <tbody>
         <tr><td>1</td><td><b>Announcement</b></td><td>At launch / on shortlisting</td><td><span class="hi">और जानें</span> → Bonus drilldown</td></tr>
         <tr><td>2</td><td><b>Opt-in / Compact</b></td><td>Right after announcement</td><td><span class="hi">मैं तैयार हूँ</span> → records opt-in (button payload)</td></tr>
-        <tr><td>3</td><td><b>Mid-cycle reassurance</b></td><td>~Day 10–12, frequency-capped</td><td><span class="hi">मेरा बोनस देखें</span> → Bonus drilldown</td></tr>
+        <tr><td>3</td><td><b>Mid-cycle reassurance</b></td><td>~Day 10–12, frequency-capped</td><td><span class="hi">मेरा कमाई कवच देखें</span> → Bonus drilldown</td></tr>
         <tr><td>4</td><td><b>Payout day</b></td><td>On credit, 16 July</td><td><span class="hi">वॉलेट देखें</span> → Wallet</td></tr>
       </tbody>
     </table>
