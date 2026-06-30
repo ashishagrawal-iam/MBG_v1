@@ -249,6 +249,7 @@
   .proto-screen{position:absolute; inset:0; display:none; flex-direction:column; background:var(--w-screen);}
   .proto-screen.active{display:flex;}
   .proto .quiz-opt:hover{border-color:var(--w-brand);}
+  .ct-content::-webkit-scrollbar{width:0;}
   .browser-bar{background:#e9e7ef; padding:10px 12px; display:flex; align-items:center; gap:8px; flex:none;}
   .browser-bar .b-url{background:#fff; border-radius:8px; padding:6px 11px; flex:1; font-size:11.5px; color:var(--w-text-2); white-space:nowrap; overflow:hidden;}
   .browser-bar .b-dots{font-size:13px; color:var(--w-text-3);}
@@ -278,14 +279,14 @@
   <div class="hero">
     <p class="eyebrow">Wiom · कमाई कवच · OptIn V0 · clickable prototype</p>
     <h1>OptIn V0 — interactive prototype</h1>
-    <p>Tap the CTAs to walk each <b>happy flow</b> exactly as the CSP would in the app. Both flows assume the CSP is <b>eligible</b>; they differ only by audit status. The quiz is live — tap the wrong option for the no-blame teach-and-retry, the right one to switch on कमाई कवच. Use <b>↺ फिर से शुरू करें</b> to restart a flow.</p>
-    <div class="proto-intro"><b>Flow 1 (audit done):</b> announcement → mutual oath → quiz → eligible.<br><b>Flow 2 (audit pending):</b> oath → audit screen → (simulated browser) → "जाँच में है" → quiz → eligible.</div>
+    <p>Tap the CTAs to walk each <b>happy flow</b> like the CSP would. Both assume the CSP is <b>eligible</b>; they differ only by audit status. The <b>4-question quiz is live</b> — a wrong tap opens that question’s no-blame teach screen (with the calculation) and loops back; all four correct switches on कमाई कवच. <b>↺ फिर से शुरू करें</b> restarts a flow.</p>
+    <div class="proto-intro"><b>Quiz:</b> Q1 कमाई कवच क्या है? · Q2 8/10 इंस्टॉल → ₹10,000 · Q3 5/10 (50%) → सिर्फ़ ₹1,500 · Q4 40/50 → पूरा ₹12,000. Correct = B, C, B, D.</div>
   </div>
 
   <div class="proto-row">
 <div class="proto-col">
   <div class="proto-label">Flow 1 · ऑडिट हो चुका है</div>
-  <div class="proto-sub hi">Audit done — eligible. announcement → oath → quiz → कवच चालू.</div>
+  <div class="proto-sub hi">Audit done. announcement → oath → 4-सवाल क्विज़ → कवच चालू.</div>
   <div class="proto">
     <div class="phone"><div class="screen">
 <div class="proto-screen active" data-id="announcement">
@@ -305,29 +306,64 @@
 <div class="proto-screen" data-id="quiz_intro">
   <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
   <div class="w-body"><div class="ct">
-    <div class="ct-hero"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">📝</div><div class="ct-kick hi">कमाई कवच · एक छोटा सवाल</div><div class="ct-title hi">एक आसान सवाल,<br>फिर तैयार</div></div>
-    <div class="ct-content"><div class="ct-body hi">कमाई कवच चालू करने के लिए बस एक आसान सवाल का जवाब दीजिए — सही जवाब देते ही आप शामिल हो जाएंगे।</div><div class="ct-ctas"><button class="w-cta hi" data-goto="quiz_q1">सवाल शुरू करें</button></div></div>
+    <div class="ct-hero"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">📝</div><div class="ct-kick hi">कमाई कवच · 4 छोटे सवाल</div><div class="ct-title hi">एक आसान क्विज़,<br>फिर तैयार</div></div>
+    <div class="ct-content"><div class="ct-body hi">कमाई कवच चालू करने के लिए बस 4 आसान सवालों के जवाब दीजिए — सभी सही होते ही आप शामिल हो जाएंगे।</div><div class="ct-ctas"><button class="w-cta hi" data-goto="q1">सवाल शुरू करें</button></div></div>
   </div></div>
 </div>
-<div class="proto-screen" data-id="quiz_q1">
+<div class="proto-screen" data-id="q1">
   <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
   <div class="w-body"><div class="ct">
-    <div class="ct-hero"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">❓</div><div class="ct-kick hi">कमाई कवच · सवाल 1/1</div><div class="ct-title hi">अब आप बताइए</div></div>
-    <div class="ct-content"><div class="quiz-q hi">अगर महीने में आपको 100 लीड मिलें और उनमें से आपने 50 लगाएं, तो क्या उस महीने आप कमाई कवच के लिए eligible होंगे?</div><button class="quiz-opt hi" data-goto="quiz_wrong">हाँ, आपने बोला है तो देना तो पड़ेगा ही।</button><button class="quiz-opt hi" data-goto="quiz_correct">नहीं, मैंने 60% से कम लगाए हैं।</button></div>
+    <div class="ct-hero"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">❓</div><div class="ct-kick hi">कमाई कवच · सवाल 1/4</div><div class="ct-title hi">कमाई कवच क्या है?</div></div>
+    <div class="ct-content" style="overflow-y:auto"><div class="quiz-q hi">इनमें से सही बात कौन-सी है?</div><button class="quiz-opt hi" data-goto="q1t"><b>A)</b> बिना काम किए हर महीने ₹10,000 पक्का मिलेगा।</button><button class="quiz-opt hi" data-goto="q2"><b>B)</b> हर इंस्टॉल के ₹300, और महीने का कम से कम ₹10,000 की गारंटी।</button><button class="quiz-opt hi" data-goto="q1t"><b>C)</b> सिर्फ़ इंस्टॉल के पैसे, कोई ₹10,000 गारंटी नहीं।</button><button class="quiz-opt hi" data-goto="q1t"><b>D)</b> हर इंस्टॉल के ₹300 और ₹10,000 गारंटी, इंस्टॉल रेट चाहे जो भी हो।</button></div>
   </div></div>
 </div>
-<div class="proto-screen" data-id="quiz_wrong">
+<div class="proto-screen" data-id="q1t">
   <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
   <div class="w-body"><div class="ct">
-    <div class="ct-hero" style="background:linear-gradient(155deg,#7b3fd1,#5a17b0)"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">💡</div><div class="ct-kick hi">कमाई कवच · एक बार और</div><div class="ct-title hi">एक छोटी बात<br>समझ लें</div></div>
-    <div class="ct-content"><button class="quiz-opt wrong hi">हाँ, आपने बोला है तो देना तो पड़ेगा ही। <span class="mk">✕</span></button><div class="ct-body hi" style="margin-top:6px">कमाई कवच तभी मिलती है जब आप मिली लीड में से 60% या ज़्यादा लगाएं — 100 में से 50 यानी सिर्फ़ 50%, इसलिए एक बार और सोचें।</div><div class="ct-ctas"><button class="w-cta hi" style="background:var(--w-info)" data-goto="quiz_q1">दोबारा कोशिश करें</button></div></div>
+    <div class="ct-hero" style="background:linear-gradient(155deg,#7b3fd1,#5a17b0)"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">💡</div><div class="ct-kick hi">कमाई कवच · समझें</div><div class="ct-title hi">एक छोटी बात समझें</div></div>
+    <div class="ct-content" style="overflow-y:auto"><div class="ct-body hi" style="line-height:1.75">कमाई कवच में हर इंस्टॉल के आपको <b>₹300</b> मिलते हैं। अगर पूरे महीने की इंस्टॉल कमाई ₹10,000 से कम रह जाए, तो Wiom उसे <b>₹10,000 तक पूरा</b> कर देती है — इसके लिए आपकी इंस्टॉल रेट <b>60% या उससे ऊपर</b> होनी चाहिए। ₹10,000 मुफ़्त में नहीं मिलता, और रिचार्ज के पैसे Wiom के हैं, आपके नहीं।</div><div class="ct-ctas"><button class="w-cta hi" style="background:var(--w-info)" data-goto="q1">दोबारा कोशिश करें</button></div></div>
   </div></div>
 </div>
-<div class="proto-screen" data-id="quiz_correct">
+<div class="proto-screen" data-id="q2">
   <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
   <div class="w-body"><div class="ct">
-    <div class="ct-hero" style="background:linear-gradient(155deg,#0a9d56,#007a40)"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">✅</div><div class="ct-kick hi">कमाई कवच · सही जवाब</div><div class="ct-title hi">बिल्कुल सही!</div></div>
-    <div class="ct-content"><button class="quiz-opt correct hi">नहीं, मैंने 60% से कम लगाए हैं। <span class="mk">✓</span></button><div class="ct-body hi" style="margin-top:6px">आपने नियम समझ लिया — 60% कनेक्शन लगाने पर ही कमाई कवच आपकी है। शाबाश!</div><div class="ct-ctas"><button class="w-cta hi" style="background:var(--w-pos)" data-goto="eligible">कवच चालू करें</button></div></div>
+    <div class="ct-hero"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">❓</div><div class="ct-kick hi">कमाई कवच · सवाल 2/4</div><div class="ct-title hi">अब हिसाब लगाइए</div></div>
+    <div class="ct-content" style="overflow-y:auto"><div class="quiz-q hi">इस महीने आपको 10 कनेक्शन आते हैं और आप उनमें से 8 इंस्टॉल कर देते हैं। आपकी कुल कमाई कितनी होगी?</div><button class="quiz-opt hi" data-goto="q2t"><b>A)</b> ₹2,400</button><button class="quiz-opt hi" data-goto="q2t"><b>B)</b> ₹7,600</button><button class="quiz-opt hi" data-goto="q3"><b>C)</b> ₹10,000</button><button class="quiz-opt hi" data-goto="q2t"><b>D)</b> ₹2,600</button></div>
+  </div></div>
+</div>
+<div class="proto-screen" data-id="q2t">
+  <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+  <div class="w-body"><div class="ct">
+    <div class="ct-hero" style="background:linear-gradient(155deg,#7b3fd1,#5a17b0)"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">💡</div><div class="ct-kick hi">कमाई कवच · समझें</div><div class="ct-title hi">ऐसे बनता है ₹10,000</div></div>
+    <div class="ct-content" style="overflow-y:auto"><div class="ct-body hi" style="line-height:1.75">1️⃣ इंस्टॉल रेट = 8 ÷ 10 = <b>80%</b> — 60% से ऊपर, इसलिए गारंटी लागू।<br>2️⃣ इंस्टॉल कमाई = ₹300 × 8 = <b>₹2,400</b>।<br>3️⃣ ₹2,400, ₹10,000 से कम है — Wiom टॉप-अप देगा = ₹10,000 − ₹2,400 = <b>₹7,600</b>।<br>4️⃣ कुल = ₹2,400 + ₹7,600 = <b>₹10,000</b>।</div><div class="ct-ctas"><button class="w-cta hi" style="background:var(--w-info)" data-goto="q2">दोबारा कोशिश करें</button></div></div>
+  </div></div>
+</div>
+<div class="proto-screen" data-id="q3">
+  <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+  <div class="w-body"><div class="ct">
+    <div class="ct-hero"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">❓</div><div class="ct-kick hi">कमाई कवच · सवाल 3/4</div><div class="ct-title hi">एक और हिसाब</div></div>
+    <div class="ct-content" style="overflow-y:auto"><div class="quiz-q hi">इस महीने 10 कनेक्शन आते हैं, लेकिन आप सिर्फ़ 5 इंस्टॉल कर पाते हैं। आपकी कमाई कितनी होगी?</div><button class="quiz-opt hi" data-goto="q3t"><b>A)</b> ₹10,000 (गारंटी तो मिल ही जाएगा)</button><button class="quiz-opt hi" data-goto="q4"><b>B)</b> ₹1,500 — सिर्फ़ इंस्टॉल की कमाई, गारंटी नहीं</button><button class="quiz-opt hi" data-goto="q3t"><b>C)</b> ₹6,000</button><button class="quiz-opt hi" data-goto="q3t"><b>D)</b> ₹3,000</button></div>
+  </div></div>
+</div>
+<div class="proto-screen" data-id="q3t">
+  <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+  <div class="w-body"><div class="ct">
+    <div class="ct-hero" style="background:linear-gradient(155deg,#7b3fd1,#5a17b0)"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">💡</div><div class="ct-kick hi">कमाई कवच · समझें</div><div class="ct-title hi">60% से नीचे — गारंटी नहीं</div></div>
+    <div class="ct-content" style="overflow-y:auto"><div class="ct-body hi" style="line-height:1.75">1️⃣ इंस्टॉल रेट = 5 ÷ 10 = <b>50%</b> — यह 60% से नीचे है।<br>2️⃣ ₹10,000 गारंटी सिर्फ़ तब मिलती है जब रेट <b>60% या ज़्यादा</b> हो। 60% से नीचे कोई टॉप-अप नहीं — यह हार्ड लाइन है।<br>3️⃣ इसलिए सिर्फ़ इंस्टॉल कमाई = ₹300 × 5 = <b>₹1,500</b>।<br>💡 सिर्फ़ 1 और इंस्टॉल (6 ÷ 10 = 60%) पूरा ₹10,000 अनलॉक कर देता।</div><div class="ct-ctas"><button class="w-cta hi" style="background:var(--w-info)" data-goto="q3">दोबारा कोशिश करें</button></div></div>
+  </div></div>
+</div>
+<div class="proto-screen" data-id="q4">
+  <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+  <div class="w-body"><div class="ct">
+    <div class="ct-hero"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">❓</div><div class="ct-kick hi">कमाई कवच · सवाल 4/4</div><div class="ct-title hi">आख़िरी सवाल</div></div>
+    <div class="ct-content" style="overflow-y:auto"><div class="quiz-q hi">इस महीने 50 कनेक्शन आते हैं और आप 40 इंस्टॉल कर देते हैं। आपकी कमाई कितनी होगी?</div><button class="quiz-opt hi" data-goto="q4t"><b>A)</b> ₹10,000 (गारंटी तक ही मिलेगा)</button><button class="quiz-opt hi" data-goto="q4t"><b>B)</b> ₹2,000</button><button class="quiz-opt hi" data-goto="q4t"><b>C)</b> ₹11,000</button><button class="quiz-opt hi" data-goto="eligible"><b>D)</b> ₹12,000 — पूरी इंस्टॉल कमाई आपकी</button></div>
+  </div></div>
+</div>
+<div class="proto-screen" data-id="q4t">
+  <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+  <div class="w-body"><div class="ct">
+    <div class="ct-hero" style="background:linear-gradient(155deg,#7b3fd1,#5a17b0)"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">💡</div><div class="ct-kick hi">कमाई कवच · समझें</div><div class="ct-title hi">गारंटी से ऊपर — पूरा आपका</div></div>
+    <div class="ct-content" style="overflow-y:auto"><div class="ct-body hi" style="line-height:1.75">1️⃣ इंस्टॉल रेट = 40 ÷ 50 = <b>80%</b> — 60% से ऊपर, गेट पार।<br>2️⃣ इंस्टॉल कमाई = ₹300 × 40 = <b>₹12,000</b>।<br>3️⃣ ₹12,000 तो ₹10,000 गारंटी से पहले ही ज़्यादा है — कोई टॉप-अप नहीं, पूरा <b>₹12,000 आपका</b>।</div><div class="ct-ctas"><button class="w-cta hi" style="background:var(--w-info)" data-goto="q4">दोबारा कोशिश करें</button></div></div>
   </div></div>
 </div>
 <div class="proto-screen" data-id="eligible">
@@ -343,7 +379,7 @@
 </div>
 <div class="proto-col">
   <div class="proto-label">Flow 2 · ऑडिट बाकी है</div>
-  <div class="proto-sub hi">Audit pending — eligible. oath → ऑडिट → browser → जाँच → quiz → कवच चालू.</div>
+  <div class="proto-sub hi">Audit pending. oath → ऑडिट → browser → जाँच → 4-सवाल क्विज़ → कवच चालू.</div>
   <div class="proto">
     <div class="phone"><div class="screen">
 <div class="proto-screen active" data-id="announcement">
@@ -364,7 +400,7 @@
   <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
   <div class="w-body"><div class="ct">
     <div class="ct-hero"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">🛡️</div><div class="ct-kick hi">कमाई कवच · आख़िरी कदम</div><div class="ct-title hi">बस एक छोटा<br>कदम बाकी है</div></div>
-    <div class="ct-content"><div class="ct-body hi">₹10,000 तक की कमाई कवच चालू करने के लिए पहले नेटबॉक्स माफ़ी योजना का छोटा-सा ऑडिट पूरा कर लें।</div><div class="ct-ctas"><button class="w-cta hi" data-goto="audit_browser">ऑडिट पूरा करें</button><button class="w-cta ghost hi" data-goto="announcement">बाद में करें</button></div></div>
+    <div class="ct-content"><div class="ct-body hi">₹10,000 तक की कमाई कवच चालू करने के लिए पहले नेटबॉक्स माफ़ी योजना का छोटा-सा ऑडिट पूरा कर लें।</div><div class="ct-ctas"><button class="w-cta hi" data-goto="audit_browser">ऑडिट पूरा करें</button></div></div>
   </div></div>
 </div>
 <div class="proto-screen" data-id="audit_browser"><div class="browser-bar"><span class="b-dots">‹ ›</span><span class="b-url hi">🔒 wiom.in/netbox-maafi-audit</span><span class="b-dots">⋮</span></div>
@@ -387,29 +423,64 @@
 <div class="proto-screen" data-id="quiz_intro">
   <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
   <div class="w-body"><div class="ct">
-    <div class="ct-hero"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">📝</div><div class="ct-kick hi">कमाई कवच · एक छोटा सवाल</div><div class="ct-title hi">एक आसान सवाल,<br>फिर तैयार</div></div>
-    <div class="ct-content"><div class="ct-body hi">कमाई कवच चालू करने के लिए बस एक आसान सवाल का जवाब दीजिए — सही जवाब देते ही आप शामिल हो जाएंगे।</div><div class="ct-ctas"><button class="w-cta hi" data-goto="quiz_q1">सवाल शुरू करें</button></div></div>
+    <div class="ct-hero"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">📝</div><div class="ct-kick hi">कमाई कवच · 4 छोटे सवाल</div><div class="ct-title hi">एक आसान क्विज़,<br>फिर तैयार</div></div>
+    <div class="ct-content"><div class="ct-body hi">कमाई कवच चालू करने के लिए बस 4 आसान सवालों के जवाब दीजिए — सभी सही होते ही आप शामिल हो जाएंगे।</div><div class="ct-ctas"><button class="w-cta hi" data-goto="q1">सवाल शुरू करें</button></div></div>
   </div></div>
 </div>
-<div class="proto-screen" data-id="quiz_q1">
+<div class="proto-screen" data-id="q1">
   <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
   <div class="w-body"><div class="ct">
-    <div class="ct-hero"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">❓</div><div class="ct-kick hi">कमाई कवच · सवाल 1/1</div><div class="ct-title hi">अब आप बताइए</div></div>
-    <div class="ct-content"><div class="quiz-q hi">अगर महीने में आपको 100 लीड मिलें और उनमें से आपने 50 लगाएं, तो क्या उस महीने आप कमाई कवच के लिए eligible होंगे?</div><button class="quiz-opt hi" data-goto="quiz_wrong">हाँ, आपने बोला है तो देना तो पड़ेगा ही।</button><button class="quiz-opt hi" data-goto="quiz_correct">नहीं, मैंने 60% से कम लगाए हैं।</button></div>
+    <div class="ct-hero"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">❓</div><div class="ct-kick hi">कमाई कवच · सवाल 1/4</div><div class="ct-title hi">कमाई कवच क्या है?</div></div>
+    <div class="ct-content" style="overflow-y:auto"><div class="quiz-q hi">इनमें से सही बात कौन-सी है?</div><button class="quiz-opt hi" data-goto="q1t"><b>A)</b> बिना काम किए हर महीने ₹10,000 पक्का मिलेगा।</button><button class="quiz-opt hi" data-goto="q2"><b>B)</b> हर इंस्टॉल के ₹300, और महीने का कम से कम ₹10,000 की गारंटी।</button><button class="quiz-opt hi" data-goto="q1t"><b>C)</b> सिर्फ़ इंस्टॉल के पैसे, कोई ₹10,000 गारंटी नहीं।</button><button class="quiz-opt hi" data-goto="q1t"><b>D)</b> हर इंस्टॉल के ₹300 और ₹10,000 गारंटी, इंस्टॉल रेट चाहे जो भी हो।</button></div>
   </div></div>
 </div>
-<div class="proto-screen" data-id="quiz_wrong">
+<div class="proto-screen" data-id="q1t">
   <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
   <div class="w-body"><div class="ct">
-    <div class="ct-hero" style="background:linear-gradient(155deg,#7b3fd1,#5a17b0)"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">💡</div><div class="ct-kick hi">कमाई कवच · एक बार और</div><div class="ct-title hi">एक छोटी बात<br>समझ लें</div></div>
-    <div class="ct-content"><button class="quiz-opt wrong hi">हाँ, आपने बोला है तो देना तो पड़ेगा ही। <span class="mk">✕</span></button><div class="ct-body hi" style="margin-top:6px">कमाई कवच तभी मिलती है जब आप मिली लीड में से 60% या ज़्यादा लगाएं — 100 में से 50 यानी सिर्फ़ 50%, इसलिए एक बार और सोचें।</div><div class="ct-ctas"><button class="w-cta hi" style="background:var(--w-info)" data-goto="quiz_q1">दोबारा कोशिश करें</button></div></div>
+    <div class="ct-hero" style="background:linear-gradient(155deg,#7b3fd1,#5a17b0)"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">💡</div><div class="ct-kick hi">कमाई कवच · समझें</div><div class="ct-title hi">एक छोटी बात समझें</div></div>
+    <div class="ct-content" style="overflow-y:auto"><div class="ct-body hi" style="line-height:1.75">कमाई कवच में हर इंस्टॉल के आपको <b>₹300</b> मिलते हैं। अगर पूरे महीने की इंस्टॉल कमाई ₹10,000 से कम रह जाए, तो Wiom उसे <b>₹10,000 तक पूरा</b> कर देती है — इसके लिए आपकी इंस्टॉल रेट <b>60% या उससे ऊपर</b> होनी चाहिए। ₹10,000 मुफ़्त में नहीं मिलता, और रिचार्ज के पैसे Wiom के हैं, आपके नहीं।</div><div class="ct-ctas"><button class="w-cta hi" style="background:var(--w-info)" data-goto="q1">दोबारा कोशिश करें</button></div></div>
   </div></div>
 </div>
-<div class="proto-screen" data-id="quiz_correct">
+<div class="proto-screen" data-id="q2">
   <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
   <div class="w-body"><div class="ct">
-    <div class="ct-hero" style="background:linear-gradient(155deg,#0a9d56,#007a40)"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">✅</div><div class="ct-kick hi">कमाई कवच · सही जवाब</div><div class="ct-title hi">बिल्कुल सही!</div></div>
-    <div class="ct-content"><button class="quiz-opt correct hi">नहीं, मैंने 60% से कम लगाए हैं। <span class="mk">✓</span></button><div class="ct-body hi" style="margin-top:6px">आपने नियम समझ लिया — 60% कनेक्शन लगाने पर ही कमाई कवच आपकी है। शाबाश!</div><div class="ct-ctas"><button class="w-cta hi" style="background:var(--w-pos)" data-goto="eligible">कवच चालू करें</button></div></div>
+    <div class="ct-hero"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">❓</div><div class="ct-kick hi">कमाई कवच · सवाल 2/4</div><div class="ct-title hi">अब हिसाब लगाइए</div></div>
+    <div class="ct-content" style="overflow-y:auto"><div class="quiz-q hi">इस महीने आपको 10 कनेक्शन आते हैं और आप उनमें से 8 इंस्टॉल कर देते हैं। आपकी कुल कमाई कितनी होगी?</div><button class="quiz-opt hi" data-goto="q2t"><b>A)</b> ₹2,400</button><button class="quiz-opt hi" data-goto="q2t"><b>B)</b> ₹7,600</button><button class="quiz-opt hi" data-goto="q3"><b>C)</b> ₹10,000</button><button class="quiz-opt hi" data-goto="q2t"><b>D)</b> ₹2,600</button></div>
+  </div></div>
+</div>
+<div class="proto-screen" data-id="q2t">
+  <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+  <div class="w-body"><div class="ct">
+    <div class="ct-hero" style="background:linear-gradient(155deg,#7b3fd1,#5a17b0)"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">💡</div><div class="ct-kick hi">कमाई कवच · समझें</div><div class="ct-title hi">ऐसे बनता है ₹10,000</div></div>
+    <div class="ct-content" style="overflow-y:auto"><div class="ct-body hi" style="line-height:1.75">1️⃣ इंस्टॉल रेट = 8 ÷ 10 = <b>80%</b> — 60% से ऊपर, इसलिए गारंटी लागू।<br>2️⃣ इंस्टॉल कमाई = ₹300 × 8 = <b>₹2,400</b>।<br>3️⃣ ₹2,400, ₹10,000 से कम है — Wiom टॉप-अप देगा = ₹10,000 − ₹2,400 = <b>₹7,600</b>।<br>4️⃣ कुल = ₹2,400 + ₹7,600 = <b>₹10,000</b>।</div><div class="ct-ctas"><button class="w-cta hi" style="background:var(--w-info)" data-goto="q2">दोबारा कोशिश करें</button></div></div>
+  </div></div>
+</div>
+<div class="proto-screen" data-id="q3">
+  <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+  <div class="w-body"><div class="ct">
+    <div class="ct-hero"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">❓</div><div class="ct-kick hi">कमाई कवच · सवाल 3/4</div><div class="ct-title hi">एक और हिसाब</div></div>
+    <div class="ct-content" style="overflow-y:auto"><div class="quiz-q hi">इस महीने 10 कनेक्शन आते हैं, लेकिन आप सिर्फ़ 5 इंस्टॉल कर पाते हैं। आपकी कमाई कितनी होगी?</div><button class="quiz-opt hi" data-goto="q3t"><b>A)</b> ₹10,000 (गारंटी तो मिल ही जाएगा)</button><button class="quiz-opt hi" data-goto="q4"><b>B)</b> ₹1,500 — सिर्फ़ इंस्टॉल की कमाई, गारंटी नहीं</button><button class="quiz-opt hi" data-goto="q3t"><b>C)</b> ₹6,000</button><button class="quiz-opt hi" data-goto="q3t"><b>D)</b> ₹3,000</button></div>
+  </div></div>
+</div>
+<div class="proto-screen" data-id="q3t">
+  <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+  <div class="w-body"><div class="ct">
+    <div class="ct-hero" style="background:linear-gradient(155deg,#7b3fd1,#5a17b0)"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">💡</div><div class="ct-kick hi">कमाई कवच · समझें</div><div class="ct-title hi">60% से नीचे — गारंटी नहीं</div></div>
+    <div class="ct-content" style="overflow-y:auto"><div class="ct-body hi" style="line-height:1.75">1️⃣ इंस्टॉल रेट = 5 ÷ 10 = <b>50%</b> — यह 60% से नीचे है।<br>2️⃣ ₹10,000 गारंटी सिर्फ़ तब मिलती है जब रेट <b>60% या ज़्यादा</b> हो। 60% से नीचे कोई टॉप-अप नहीं — यह हार्ड लाइन है।<br>3️⃣ इसलिए सिर्फ़ इंस्टॉल कमाई = ₹300 × 5 = <b>₹1,500</b>।<br>💡 सिर्फ़ 1 और इंस्टॉल (6 ÷ 10 = 60%) पूरा ₹10,000 अनलॉक कर देता।</div><div class="ct-ctas"><button class="w-cta hi" style="background:var(--w-info)" data-goto="q3">दोबारा कोशिश करें</button></div></div>
+  </div></div>
+</div>
+<div class="proto-screen" data-id="q4">
+  <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+  <div class="w-body"><div class="ct">
+    <div class="ct-hero"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">❓</div><div class="ct-kick hi">कमाई कवच · सवाल 4/4</div><div class="ct-title hi">आख़िरी सवाल</div></div>
+    <div class="ct-content" style="overflow-y:auto"><div class="quiz-q hi">इस महीने 50 कनेक्शन आते हैं और आप 40 इंस्टॉल कर देते हैं। आपकी कमाई कितनी होगी?</div><button class="quiz-opt hi" data-goto="q4t"><b>A)</b> ₹10,000 (गारंटी तक ही मिलेगा)</button><button class="quiz-opt hi" data-goto="q4t"><b>B)</b> ₹2,000</button><button class="quiz-opt hi" data-goto="q4t"><b>C)</b> ₹11,000</button><button class="quiz-opt hi" data-goto="eligible"><b>D)</b> ₹12,000 — पूरी इंस्टॉल कमाई आपकी</button></div>
+  </div></div>
+</div>
+<div class="proto-screen" data-id="q4t">
+  <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+  <div class="w-body"><div class="ct">
+    <div class="ct-hero" style="background:linear-gradient(155deg,#7b3fd1,#5a17b0)"><span class="ct-x" data-goto="announcement">✕</span><div class="ct-emoji">💡</div><div class="ct-kick hi">कमाई कवच · समझें</div><div class="ct-title hi">गारंटी से ऊपर — पूरा आपका</div></div>
+    <div class="ct-content" style="overflow-y:auto"><div class="ct-body hi" style="line-height:1.75">1️⃣ इंस्टॉल रेट = 40 ÷ 50 = <b>80%</b> — 60% से ऊपर, गेट पार।<br>2️⃣ इंस्टॉल कमाई = ₹300 × 40 = <b>₹12,000</b>।<br>3️⃣ ₹12,000 तो ₹10,000 गारंटी से पहले ही ज़्यादा है — कोई टॉप-अप नहीं, पूरा <b>₹12,000 आपका</b>।</div><div class="ct-ctas"><button class="w-cta hi" style="background:var(--w-info)" data-goto="q4">दोबारा कोशिश करें</button></div></div>
   </div></div>
 </div>
 <div class="proto-screen" data-id="eligible">
@@ -428,12 +499,9 @@
 </div>
 <script>
 document.querySelectorAll(".proto").forEach(function(p){
-  var screens = p.querySelectorAll(".proto-screen");
-  function show(id){ screens.forEach(function(s){ s.classList.toggle("active", s.getAttribute("data-id")===id); }); }
-  p.addEventListener("click", function(e){
-    var t = e.target.closest("[data-goto]"); if(!t || !p.contains(t)) return;
-    e.preventDefault(); show(t.getAttribute("data-goto"));
-  });
+  var screens=p.querySelectorAll(".proto-screen");
+  function show(id){ screens.forEach(function(s){ var on=s.getAttribute("data-id")===id; s.classList.toggle("active",on); if(on){var c=s.querySelector(".ct-content"); if(c)c.scrollTop=0;} }); }
+  p.addEventListener("click",function(e){ var t=e.target.closest("[data-goto]"); if(!t||!p.contains(t))return; e.preventDefault(); show(t.getAttribute("data-goto")); });
 });
 </script>
 </body>
