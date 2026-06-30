@@ -501,7 +501,31 @@
 document.querySelectorAll(".proto").forEach(function(p){
   var screens=p.querySelectorAll(".proto-screen");
   function show(id){ screens.forEach(function(s){ var on=s.getAttribute("data-id")===id; s.classList.toggle("active",on); if(on){var c=s.querySelector(".ct-content"); if(c)c.scrollTop=0;} }); }
-  p.addEventListener("click",function(e){ var t=e.target.closest("[data-goto]"); if(!t||!p.contains(t))return; e.preventDefault(); show(t.getAttribute("data-goto")); });
+  function mark(b,sym,cls){ b.classList.add(cls); if(!b.querySelector(".mk")){ var s=document.createElement("span"); s.className="mk"; s.textContent=sym; b.appendChild(s); } }
+  function clearMarks(scr){ scr.querySelectorAll(".quiz-opt").forEach(function(b){ b.classList.remove("correct","wrong"); b.style.pointerEvents=""; var m=b.querySelector(".mk"); if(m)m.remove(); }); scr.removeAttribute("data-answered"); }
+  p.addEventListener("click",function(e){
+    var opt=e.target.closest(".quiz-opt");
+    if(opt && p.contains(opt)){
+      var scr=opt.closest(".proto-screen");
+      if(scr.getAttribute("data-answered")) return;            // ignore further taps
+      scr.setAttribute("data-answered","1");
+      var goto=opt.getAttribute("data-goto");
+      var teachId=scr.getAttribute("data-id")+"t";
+      var isCorrect=(goto!==teachId);
+      scr.querySelectorAll(".quiz-opt").forEach(function(b){ b.style.pointerEvents="none"; });
+      if(isCorrect){
+        mark(opt,"✓","correct");                               // show correct selection
+      } else {
+        mark(opt,"✕","wrong");                                 // show wrong selection
+        var cor=[].slice.call(scr.querySelectorAll(".quiz-opt")).filter(function(b){return b.getAttribute("data-goto")!==teachId;})[0];
+        if(cor) mark(cor,"✓","correct");                       // reveal the correct option
+      }
+      setTimeout(function(){ clearMarks(scr); show(goto); }, isCorrect?900:1300);  // then advance / go to description
+      return;
+    }
+    var t=e.target.closest("[data-goto]"); if(!t||!p.contains(t)) return;
+    e.preventDefault(); show(t.getAttribute("data-goto"));
+  });
 });
 </script>
 </body>
