@@ -217,6 +217,20 @@
   .note b{color:var(--ink);}
   .two{display:grid; grid-template-columns:1fr 1fr; gap:18px;} @media(max-width:880px){.two{grid-template-columns:1fr;}}
   code{background:var(--page); border:1px solid var(--line); border-radius:5px; padding:1px 6px; font-size:12.5px; color:var(--magenta);}
+  /* quiz options + branch flow (OptIn V0) */
+  .quiz-q{font-size:13.5px; color:var(--w-text); line-height:1.5; margin:2px 0 12px; font-weight:600;}
+  .quiz-opt{display:block; width:100%; text-align:left; background:#fff; border:1px solid var(--w-stroke-2); border-radius:12px; padding:12px 13px; margin-bottom:9px; font-size:13px; color:var(--w-text); line-height:1.4;}
+  .quiz-opt.correct{border-color:var(--w-pos); background:var(--w-pos-bg); color:#0a5e32;}
+  .quiz-opt.wrong{border-color:var(--w-neg); background:var(--w-neg-bg); color:#8a1620;}
+  .quiz-opt .mk{float:right; font-weight:700; margin-left:6px;}
+  .flow{display:flex; flex-wrap:wrap; align-items:center; gap:7px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:15px 16px; margin:6px 0 2px; font-size:12.5px;}
+  .flow .node{background:var(--page); border:1px solid var(--line-2); border-radius:8px; padding:6px 10px; font-weight:600; color:var(--ink);}
+  .flow .node.brand{background:#FCE3F3; border-color:var(--w-brand-stroke); color:var(--magenta);}
+  .flow .node.ok{background:var(--green-soft); border-color:transparent; color:var(--green);}
+  .flow .node.warn{background:var(--amber-soft); border-color:transparent; color:var(--amber);}
+  .flow .arrow{color:var(--ink-3); font-weight:700;}
+  .flow .br{flex-basis:100%; height:2px;}
+  .flow .lbl{font-size:11px; color:var(--ink-3); font-weight:700; text-transform:uppercase; letter-spacing:.03em; margin-right:2px;}
   .fine{margin-top:30px; font-size:12px; color:var(--ink-3); border-top:1px solid var(--line); padding-top:16px;}
 </style>
 </head>
@@ -320,6 +334,158 @@
         <div class="caption">CleverTap full-page — opt-in / compact</div>
       </div>
     </div>
+  </div>
+
+  <!-- STAGE 3 -->
+  <div class="section" id="s3">
+    <div class="section-head"><div class="kicker">Stage 3 · After the oath</div><h2>Audit gate + quiz → कमाई कवच चालू</h2><p class="sub">The moment the CSP taps <b>"मैं वादा करता हूँ"</b>, an invisible router checks the <b>नेटबॉक्स माफ़ी योजना</b> audit and branches. <b>Case 1</b> (audit pending) sends them to the audit (external browser) and handles the return. <b>Case 2</b> (audit done) takes them through a one-question comprehension quiz. Both converge on कमाई कवच being switched on.</p></div>
+
+    <div class="flow">
+      <span class="node brand hi">मैं वादा करता हूँ</span><span class="arrow">→</span><span class="node hi">ऑडिट हुआ?</span>
+      <div class="br"></div>
+      <span class="lbl">Case 1 · नहीं</span><span class="node warn hi">ऑडिट पूरा करें</span><span class="arrow">→</span><span class="node hi">URL (browser)</span><span class="arrow">→</span><span class="node hi">वापसी पर दोबारा जाँच</span><span class="arrow">→</span><span class="node ok hi">क्विज़</span>
+      <div class="br"></div>
+      <span class="lbl">Case 2 · हाँ</span><span class="node ok hi">क्विज़</span><span class="arrow">→</span><span class="node hi">सही जवाब</span><span class="arrow">→</span><span class="node ok hi">कमाई कवच चालू 🎉</span>
+    </div>
+
+    <div class="stage" style="margin-top:18px">
+      <div class="explain">
+        <div class="meta"><span class="mtag trigger">Trigger: taps "मैं वादा करता हूँ"</span><span class="mtag mct">CleverTap full-pages + external URL</span></div>
+        <ul>
+          <li><b>Router re-checks on app-resume:</b> CleverTap in-app doesn't fire on return from the browser, so the app re-fetches audit status on foreground — and routes to <b>done → quiz</b>, <b>processing → "जाँच में है"</b>, or <b>still pending → gentle retry</b> (never "you didn't finish it").</li>
+          <li><b>Quiz is comprehension, not an exam:</b> a wrong tap opens a warm teach screen and loops back — <b>unlimited retries, no red, no "गलत", no lockout</b>.</li>
+          <li><b>Real eligibility = oath AND audit-done AND quiz-passed</b>, persisted server-side. Month-end payout keys off this flag, not the oath tap.</li>
+          <li><b>Fast-path:</b> if the audit is N/A or already cleared, Case 1 is skipped — straight to the quiz.</li>
+          <li><b>"बाद में करें"</b> anywhere → Home with progress saved; the oath is never re-asked, and a soft home banner re-invites.</li>
+          <li><b>Offline-safe:</b> status fetch / eligibility write failures show a non-blaming "थोड़ी देर में फिर कोशिश करें", and the quiz pass is cached server-side.</li>
+        </ul>
+        <div class="why"><b>Naming locked:</b> the success state is <b>कमाई कवच</b> — never "सुरक्षा कवच" (a one-off slip; the CSP just committed to कमाई कवच end-to-end) and never "बोनस" (that's the separate 16th quality bonus). <b>Params locked to the CSP model:</b> up to ₹10,000/month · gate 60% · ≥3 connections · paid month-end · till September. <span class="hi"></span></div>
+        <div class="note" style="margin-top:14px"><b>Heads-up for the team:</b> internal files (MBG - internal file, comms-journey) still carry the old economics (<b>70% / ₹5,000</b>). These CSP screens use the current <b>60% / ₹10,000</b>. Lock one source of truth before build.</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone"><div class="screen">
+          <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+          <div class="w-body">
+            <div class="ct">
+              <div class="ct-hero"><span class="ct-x">✕</span><div class="ct-emoji">🛡️</div><div class="ct-kick hi">कमाई कवच · आख़िरी कदम</div><div class="ct-title hi">बस एक छोटा<br>कदम बाकी है</div></div>
+              <div class="ct-content">
+                <div class="ct-body hi">₹10,000 तक की कमाई कवच चालू करने के लिए पहले 'नेटबॉक्स माफ़ी योजना' का छोटा-सा ऑडिट पूरा कर लें।</div>
+                <div class="ct-ctas"><button class="w-cta hi">ऑडिट पूरा करें</button><button class="w-cta ghost hi">बाद में करें</button></div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+        <div class="caption">Case 1 · audit_pending — CTA opens external audit URL</div>
+      </div>
+    </div>
+
+    <!-- CASE 1 group -->
+    <div class="case">
+      <div class="case-head"><span class="case-n">1</span><div><h3>Case 1 · Audit pending — return handling</h3><p>On return from the audit browser, the router lands the CSP on one of these by re-fetched status — a calm <b>"under review"</b> if just submitted, or a <b>no-blame retry</b> if still not done. Never the accusatory "you didn't complete it."</p></div></div>
+      <div class="case-phones">
+        <div class="pcol">
+          <div class="glabel">⏳ Returned · audit processing</div>
+          <div class="phone"><div class="screen">
+            <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+            <div class="w-body"><div class="ct">
+              <div class="ct-hero" style="background:linear-gradient(155deg,#c8860b,#9a6a0a)"><span class="ct-x">✕</span><div class="ct-emoji">⏳</div><div class="ct-kick hi">कमाई कवच · जाँच जारी</div><div class="ct-title hi">आपका ऑडिट<br>जाँच में है</div></div>
+              <div class="ct-content"><div class="ct-body hi">आपका ऑडिट मिल गया है — जाँच पूरी होते ही कमाई कवच अपने आप अगला कदम खोल देगा।</div>
+                <div class="ct-ctas"><button class="w-cta hi" style="background:var(--w-caution)">फिर से जाँचें</button><button class="w-cta ghost hi">बाद में करें</button></div></div>
+            </div></div>
+          </div></div>
+          <div class="caption">audit_processing — submitted, re-checks</div>
+        </div>
+        <div class="pcol">
+          <div class="glabel">📋 Returned · still pending (no blame)</div>
+          <div class="phone"><div class="screen">
+            <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+            <div class="w-body"><div class="ct">
+              <div class="ct-hero" style="background:linear-gradient(155deg,#7b3fd1,#5a17b0)"><span class="ct-x">✕</span><div class="ct-emoji">📋</div><div class="ct-kick hi">कमाई कवच · ऑडिट बाकी</div><div class="ct-title hi">कोई बात नहीं,<br>फिर से चलें</div></div>
+              <div class="ct-content"><div class="ct-body hi">ऑडिट अभी बाकी है — पूरा होते ही ₹10,000 तक की कमाई कवच खुल जाएगी।</div>
+                <div class="ct-ctas"><button class="w-cta hi" style="background:var(--w-info)">ऑडिट फिर खोलें</button><button class="w-cta ghost hi">बाद में करें</button></div></div>
+            </div></div>
+          </div></div>
+          <div class="caption">audit_retry — reopens the URL, unlimited tries</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE 2 group -->
+    <div class="case">
+      <div class="case-head"><span class="case-n">2</span><div><h3>Case 2 / convergence · Quiz → eligible</h3><p>Reached when the audit is done (first check, on return, or N/A). One comprehension question gates entry; tapping an option is the action. Correct answer (50% &lt; 60% → "नहीं") switches on कमाई कवच; the wrong one teaches and loops back.</p></div></div>
+      <div class="case-phones">
+        <div class="pcol">
+          <div class="glabel">📝 quiz_intro</div>
+          <div class="phone"><div class="screen">
+            <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+            <div class="w-body"><div class="ct">
+              <div class="ct-hero"><span class="ct-x">✕</span><div class="ct-emoji">📝</div><div class="ct-kick hi">कमाई कवच · एक छोटा सवाल</div><div class="ct-title hi">एक आसान सवाल,<br>फिर तैयार</div></div>
+              <div class="ct-content"><div class="ct-body hi">कमाई कवच चालू करने के लिए बस एक आसान सवाल का जवाब दीजिए — सही जवाब देते ही आप शामिल हो जाएंगे।</div>
+                <div class="ct-ctas"><button class="w-cta hi">सवाल शुरू करें</button></div></div>
+            </div></div>
+          </div></div>
+          <div class="caption">quiz_intro — frames it as quick, not a test</div>
+        </div>
+        <div class="pcol">
+          <div class="glabel">❓ quiz_q1 (tap = answer)</div>
+          <div class="phone"><div class="screen">
+            <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+            <div class="w-body"><div class="ct">
+              <div class="ct-hero"><span class="ct-x">✕</span><div class="ct-emoji">❓</div><div class="ct-kick hi">कमाई कवच · सवाल 1/1</div><div class="ct-title hi">अब आप बताइए</div></div>
+              <div class="ct-content">
+                <div class="quiz-q hi">अगर महीने में आपको 100 लीड मिलें और उनमें से आपने 50 लगाएं, तो क्या उस महीने आप कमाई कवच के लिए eligible होंगे?</div>
+                <button class="quiz-opt hi">हाँ, आपने बोला है तो देना तो पड़ेगा ही।</button>
+                <button class="quiz-opt hi">नहीं, मैंने 60% से कम लगाए हैं।</button>
+              </div>
+            </div></div>
+          </div></div>
+          <div class="caption">quiz_q1 — option 2 is correct (50% &lt; 60%)</div>
+        </div>
+        <div class="pcol">
+          <div class="glabel">💡 quiz_wrong (teach, not fail)</div>
+          <div class="phone"><div class="screen">
+            <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+            <div class="w-body"><div class="ct">
+              <div class="ct-hero" style="background:linear-gradient(155deg,#7b3fd1,#5a17b0)"><span class="ct-x">✕</span><div class="ct-emoji">💡</div><div class="ct-kick hi">कमाई कवच · एक बार और</div><div class="ct-title hi">एक छोटी बात<br>समझ लें</div></div>
+              <div class="ct-content">
+                <button class="quiz-opt wrong hi">हाँ, आपने बोला है तो देना तो पड़ेगा ही। <span class="mk">✕</span></button>
+                <div class="ct-body hi" style="margin-top:6px">कमाई कवच तभी मिलती है जब आप मिली लीड में से 60% या ज़्यादा लगाएं — 100 में से 50 यानी सिर्फ़ 50%, इसलिए एक बार और सोचें।</div>
+                <div class="ct-ctas"><button class="w-cta hi" style="background:var(--w-info)">दोबारा कोशिश करें</button></div>
+              </div>
+            </div></div>
+          </div></div>
+          <div class="caption">quiz_wrong — warm correction, loops to quiz_q1</div>
+        </div>
+        <div class="pcol">
+          <div class="glabel">✅ quiz_correct</div>
+          <div class="phone"><div class="screen">
+            <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+            <div class="w-body"><div class="ct">
+              <div class="ct-hero" style="background:linear-gradient(155deg,#0a9d56,#007a40)"><span class="ct-x">✕</span><div class="ct-emoji">✅</div><div class="ct-kick hi">कमाई कवच · सही जवाब</div><div class="ct-title hi">बिल्कुल सही!</div></div>
+              <div class="ct-content">
+                <button class="quiz-opt correct hi">नहीं, मैंने 60% से कम लगाए हैं। <span class="mk">✓</span></button>
+                <div class="ct-body hi" style="margin-top:6px">आपने नियम समझ लिया — 60% कनेक्शन लगाने पर ही कमाई कवच आपकी है। शाबाश!</div>
+                <div class="ct-ctas"><button class="w-cta hi" style="background:var(--w-pos)">कवच चालू करें</button></div>
+              </div>
+            </div></div>
+          </div></div>
+          <div class="caption">quiz_correct — writes eligibility, then →</div>
+        </div>
+        <div class="pcol">
+          <div class="glabel">🎉 eligible (opt-in complete)</div>
+          <div class="phone"><div class="screen">
+            <div class="w-header"><span class="menu">☰</span><span class="title hi">होम</span><span class="ic">🔔</span></div>
+            <div class="w-body"><div class="ct">
+              <div class="ct-hero" style="background:linear-gradient(155deg,#0a9d56,#007a40)"><span class="ct-x">✕</span><div class="ct-emoji">🎉</div><div class="ct-kick hi">कमाई कवच · चालू</div><div class="ct-title hi">बधाई हो,<br>कमाई कवच चालू!</div></div>
+              <div class="ct-content"><div class="ct-body hi">वादा पक्का — हर महीने मिली लीड का 60% और कम से कम 3 कनेक्शन लगाएं, और महीने के अंत में ₹10,000 तक आपके।</div>
+                <div class="ct-ctas"><button class="w-cta hi" style="background:var(--w-pos)">होम पर स्थिति देखें</button></div></div>
+            </div></div>
+          </div></div>
+          <div class="caption">eligible — bridges to the home कमाई कवच status</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
 </div>
